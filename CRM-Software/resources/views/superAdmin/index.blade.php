@@ -1,10 +1,12 @@
-
+@extends('layout')  
 
 @section('content')
 
-@extends('partials.navbar')
-@extends('partials.admin_sidebar')
+@include('partials.navbar')
+@include('partials.admin_sidebar')
+<div class="main-container">
+    <h1>afasdfsg</h1>
+</div>
  
 @endsection
 
-@extends('layout')  
