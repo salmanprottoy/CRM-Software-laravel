@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('superAdmin.index');
-});
+// Route::get('/', function () {
+//     return view('superAdmin.index');
+// });
+
+Route::get('/home', 'superAdmin_homeController@index')->name('superAdmin.index');
