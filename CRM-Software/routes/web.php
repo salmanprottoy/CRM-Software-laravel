@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('superAdmin.index');
 // });
 
-Route::get('/home', 'superAdmin_homeController@index')->name('superAdmin.index');
+Route::get('/superAdmin_home', 'superAdmin_homeController@index')->name('superAdmin.index');
+Route::get('/superAdmin_home/superAdmin_list', 'superAdmin_homeController@superAdmin_show')->name('superAdmin.superAdmin');

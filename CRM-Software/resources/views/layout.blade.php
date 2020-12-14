@@ -73,7 +73,6 @@
 	<script src="{{asset('assets/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
 	<script src="{{asset('assets/vendors/scripts/calendar-setting.js')}}"></script>
-	<!-- buttons for Export datatable -->
 	<script src="{{asset('assets/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/datatables/js/buttons.print.min.js')}}"></script>
@@ -81,31 +80,50 @@
 	<script src="{{asset('assets/src/plugins/datatables/js/buttons.flash.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
-	<!-- Datatable Setting js -->
 	<script src="{{asset('assets/vendors/scripts/datatable-setting.js')}}"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 	<script>
-	
-
-	new Darkmode({ label: '🌓' , saveInCookies: true}).showWidget();
-
-	// const options = {
-	// 	bottom: '64px', // default: '32px'
-	// 	right: 'unset', // default: '32px'
-	// 	left: '32px', // default: 'unset'
-	// 	time: '0.5s', // default: '0.3s'
-	// 	mixColor: '#fff', // default: '#fff'
-	// 	backgroundColor: '#fff',  // default: '#fff'
-	// 	buttonColorDark: '#100f2c',  // default: '#100f2c'
-	// 	buttonColorLight: '#fff', // default: '#fff'
-	// 	saveInCookies: false, // default: true,
-	// 	label: '🌓', // default: ''
-	// 	autoMatchOsTheme: true // default: true
-	// }
-
-	// const darkmode = new Darkmode(options);
-	// darkmode.showWidget();
+	new Darkmode({
+  
+  label: '🌓', 
+  bottom: '34px',
+  right: '0px',
+  mixColor: '#fff',
+  autoMatchOsTheme: true }).showWidget();
 	</script>
+
+{{-- bottom: '64px', // default: '32px'
+  right: 'unset', // default: '32px'
+  left: '32px', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true --}}
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script>
+		@if(Session::has('messege'))
+			var type="{{Session::get('alert-type','info')}}"
+			switch(type){
+				case 'info':
+					toastr.info("{{ Session::get('messege') }}");
+					break;
+				case 'success':
+					toastr.success("{{ Session::get('messege') }}");
+					break;
+				case 'warning':
+				toastr.warning("{{ Session::get('messege') }}");
+					break;
+				case 'error':
+					toastr.error("{{ Session::get('messege') }}");
+				break;
+		}
+	  @endif
+   </script>  
 </body>
 </html>
