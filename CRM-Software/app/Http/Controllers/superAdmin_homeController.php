@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Models\superAdmin;
 
 class superAdmin_homeController extends Controller
 {
@@ -14,5 +15,10 @@ class superAdmin_homeController extends Controller
         // return view('home.index', ['username'=> $req->session()->get('username')]);
 
         return view('superAdmin.index');
+    }
+    public function superAdmin_show()
+    {
+        $superAdmin_list = superAdmin::all();
+        return view('superAdmin.superAdmin_list')->with('superAdmin', $superAdmin_list);
     }
 }

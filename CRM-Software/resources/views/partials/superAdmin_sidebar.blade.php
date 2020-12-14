@@ -22,7 +22,7 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">Administrator</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="/supAdmin_home/supAdmin">Super Admin</a></li>
+                        <li><a href="{{route('superAdmin.superAdmin')}}">Super Admin</a></li>
                         <li><a href="/supAdmin_home/admin">Admin</a> |</li>
                        
                     </ul>
