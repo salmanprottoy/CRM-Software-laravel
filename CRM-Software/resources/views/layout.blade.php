@@ -35,7 +35,17 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/src/plugins/jquery-steps/jquery.steps.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/src/plugins/fullcalendar/fullcalendar.css')}}">
-
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+	<script src="{{asset('assets/src/darkmode-js.min.js')}}"></script>
+	<script>
+	new Darkmode({
+  
+  label: '🌓', 
+  bottom: '34px',
+  right: '0px',
+  mixColor: '#fff',
+  autoMatchOsTheme: true }).showWidget();
+	</script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
@@ -82,7 +92,11 @@
 	<script src="{{asset('assets/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
 	<script src="{{asset('assets/vendors/scripts/datatable-setting.js')}}"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+	{{-- <script src="{{asset('assets/src/darkmode-js/darkmode.js')}}"></script>
+<script>var DarkMode = new DarkMode();</script> --}}
+
+	{{-- <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script> --}}
+	<script src="{{asset('assets/src/darkmode-js.min.js')}}"></script>
 	<script>
 	new Darkmode({
   

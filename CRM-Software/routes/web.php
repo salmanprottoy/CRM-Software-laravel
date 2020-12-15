@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/superAdmin_home', 'superAdmin_homeController@index')->name('superAdmin.index');
 Route::get('/superAdmin_home/superAdmin_list', 'superAdmin_homeController@superAdmin_show')->name('superAdmin.superAdmin');
+Route::post('/superAdmin_home/superAdmin_list/create', 'superAdmin_homeController@superAdmin_create')->name('superAdmin.superAdmin.create');
