@@ -141,8 +141,8 @@
         <div class="right-sidebar-body-content">
             <h4 class="weight-600 font-18 pb-10">Header Background</h4>
             <div class="sidebar-btn-group pb-30 mb-10">
-                <a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
-                <a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
+                <a href="javascript:void(0);" class="btn btn-outline-primary header-white ">White</a>
+                <a href="javascript:void(0);" class="btn btn-outline-primary header-dark active" >Dark</a>
             </div>
 
             <h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>

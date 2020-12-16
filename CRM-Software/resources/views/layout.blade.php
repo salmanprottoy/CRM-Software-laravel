@@ -121,6 +121,10 @@
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script>
+		toastr.options = {
+  "closeButton": true,
+   "progressBar": true,
+};
 		@if(Session::has('messege'))
 			var type="{{Session::get('alert-type','info')}}"
 			switch(type){

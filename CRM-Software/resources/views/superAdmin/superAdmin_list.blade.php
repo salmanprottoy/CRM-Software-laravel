@@ -58,19 +58,22 @@
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">ID</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Contact</th>
                                 <th>Email</th>
                                 <th>Gender</th>
                                
                                 <th class="datatable-nosort">Action</th>
-                                <th>Address</th>
+                              
                             </tr>
                         </thead>
                         <tbody>
                             @for($i=0; $i < count($superAdmin); $i++)
                             <tr>
                                 <td class="table-plus">{{$superAdmin[$i]['id']}}</td>
+                                
+                                <td><img class="card-image" src="{{asset($superAdmin[$i]['image'])}}" alt="Wrong Path" style="display: flex;height: 100px; width: 100px;"></img></td>
                                 <td>{{$superAdmin[$i]['Name']}}</td>
                                 <td>{{$superAdmin[$i]['Mobile']}}</td>
                                 <td>{{$superAdmin[$i]['Email']}}</td>
@@ -90,7 +93,7 @@
                                         </div>
                                     
                                 </td>
-                                <td>{{$superAdmin[$i]['Address']}}</td>
+                               
                             </tr>
                             @endfor
 
@@ -121,7 +124,7 @@
 						<label>Image</label>
                         {{-- <input type="file" class="form-control-file form-control height-auto" name="image"> --}}
                         <img src=" {{asset('assets/uploads/user.jpg')}}"  onclick="triggerClick()" id="profileDisplay" class="center" style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto; margin-right: auto;width: 50%;"><br>
-                        <input type="file" class="form-control-file form-control height-auto" name="image" onchange="displayImage(this)" id="file" style="display:none;">
+                        <input type="file" class="form-control-file form-control height-auto" name="image" accept="image/*" onchange="displayImage(this)" id="file" style="display:none;">
 						
 					</div>
 					<div class="form-group" style="display: none;">
