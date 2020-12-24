@@ -15,14 +15,20 @@ class superAdmin_homeController extends Controller
 {
     public function index(Request $req)
     {
-        // return view('home.index', ['username'=> $req->session()->get('username')]);
 
+        // echo "<script>console.log('asdada');</script>";
+
+
+        // return view('home.index', ['username'=> $req->session()->get('username')]);
+        error_log('asdadfdf');
         return view('superAdmin.index');
     }
     public function superAdmin_show()
     {
-        $superAdmin_list = superAdmin::all();
-        // error_log($superAdmin_list);
+
+        // $superAdmin_list = superAdmin::all();
+        $superAdmin_list = superAdmin::where('type', 'Super Admin')->get();
+        //error_log($superAdmin_list);
         return view('superAdmin.superAdmin_list')->with('superAdmin', $superAdmin_list);
     }
 
@@ -35,11 +41,11 @@ class superAdmin_homeController extends Controller
         $superAdmin_create['Email'] = $req->email;
         $superAdmin_create['Gender'] = $req->gender;
         $superAdmin_create['Address'] = $req->address;
-        $user_create = array();
-        $user_create['type'] = $req->type;
-        $user_create['username'] = $req->username;
-        $user_create['password'] = Str::random(4);
-        //error_log($user_create['password']);
+        // $user_create = array();
+        $superAdmin_create['type'] = $req->type;
+        $superAdmin_create['username'] = $req->username;
+        $superAdmin_create['password'] = Str::random(4);
+        //error_log($superAdmin_create['password']);
 
         $image = $req->file('image');
         if ($image) {
@@ -55,20 +61,20 @@ class superAdmin_homeController extends Controller
                     $superAdmin_create['image'] = $image_url;
                     $superAdmin_add = DB::table('supadmin')->insert($superAdmin_create);
                     if ($superAdmin_add) {
-                        $user_add = DB::table('adminuser')->insert($user_create);
-                        if ($user_add) {
-                            $alert = array(
-                                'messege' => 'Super Admin inserted Successfully',
-                                'alert-type' => 'success'
-                            );
-                            return Redirect()->Back()->with($alert);
-                        } else {
-                            $alert = array(
-                                'messege' => 'User Insertion failed',
-                                'alert-type' => 'error'
-                            );
-                            return Redirect()->Back()->with($alert);
-                        }
+                        // $user_add = DB::table('adminuser')->insert($user_create);
+                        // if ($user_add) {
+                        $alert = array(
+                            'messege' => 'Super Admin inserted Successfully',
+                            'alert-type' => 'success'
+                        );
+                        return Redirect()->Back()->with($alert);
+                        // } else {
+                        //     $alert = array(
+                        //         'messege' => 'User Insertion failed',
+                        //         'alert-type' => 'error'
+                        //     );
+                        //     return Redirect()->Back()->with($alert);
+                        //}
                     } else {
                         $alert = array(
                             'messege' => 'Super Admin Insertion failed',
@@ -91,5 +97,33 @@ class superAdmin_homeController extends Controller
                 return Redirect()->Back()->with($alert);
             }
         }
+    }
+    public function search(Request $req)
+    {
+        if ($req->ajax()) {
+            $value = $req->get('search');
+            // error_log($value);
+            $found = DB::table('supadmin')->where('username', $value)->get();
+            //    error_log($found);
+            // $total_row = $found->count();
+            // if($total_row > 0){
+
+            // }
+            return response()->json($found);
+        } else {
+            return Redirect()->Back();
+        }
+
+        // echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+        //error_log($req->get('search'));
+        // $posts = superAdmin::where('username', $req->get('search'))->get();
+        // echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+        // //return json_encode($posts);
+        // return response()->json($posts);
+        // $search = $req->username;
+        //error_log($posts);
+        // $found = superAdmin::where('username', $search)->get();
+        // error_log($found);
+        // return json_encode($found);
     }
 }

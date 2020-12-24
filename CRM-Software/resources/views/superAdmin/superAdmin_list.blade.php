@@ -139,7 +139,7 @@
 					<div class="form-group">
 						{{-- <label>Username</label> --}}
 						<input class="form-control" type="text" placeholder="" id="unamecreate" name="username">
-						<div id="alert">
+						<div id="alert" style="color:red">
 
 						</div>
 					</div>
@@ -190,6 +190,49 @@
             reader.readAsDataURL(e.files[0]);
         }
     }
+    $(document).ready(function () {
+        $("#unamecreate").focus(function () {
+
+$('#alert').html("");
+});
+        $('#unamecreate').focusout(function () {
+		var username = $("#unamecreate").val();
+		// alert("hi");
+		$.ajax({
+			method: 'GET',
+          
+            url : "{{route('superAdmin.superAdmin.search')}}",
+			dataType: 'json',
+			data: {
+				search: username
+			},
+
+			success: function (response) {
+				//alert('asdfafdfd');
+                if (response.length != 0){
+				var alert = " <div class='alert alert-warning alert-dismissible fade show' role='alert'>"
+				alert += "<strong>Warning!</strong> Username already taken"
+				alert += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+				alert += " <span aria-hidden='true'>&times;</span>"
+				alert += " </button>"
+				alert += "</div>"
+
+				$('#alert').html(alert);
+                $("#unamecreate").val("");
+                }
+                else{
+                  //  alert('asdfafdfd');
+                }
+
+			},
+			error: function (error) {
+				alert("Error");
+			}
+
+		});
+	});
+    })
 </script>
+{{-- <script src="{{asset('assets/js/username.js')}}"></script> --}}
 @endsection
 
