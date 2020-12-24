@@ -29,10 +29,10 @@
 
 
                 <!-- <div class="card-box mb-30" style="float: right; padding-right: 20px; padding-top: 20px;">
-                                                                    <a href="/user/create">
-                                                                        <button type="button" class="btn btn-primary">Primary</button>
-                                                                    </a>
-                                                                 </div> -->
+                                                                                                                    <a href="/user/create">
+                                                                                                                        <button type="button" class="btn btn-primary">Primary</button>
+                                                                                                                    </a>
+                                                                                                                 </div> -->
 
 
 
@@ -40,13 +40,13 @@
                     <div class="pd-20">
                         <div class="clearfix">
                             <div class="pull-left">
-                                <h4 class="text-blue h4">Super Admin List</h4>
+                                <h4 class="text-blue h4"> Admin List</h4>
 
                             </div>
                             <div class="pull-right">
 
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#superAdmin_create"><i class="fa fa-user-plus"></i></button>
+                                    data-target="#admin_create"><i class="fa fa-user-plus"></i></button>
 
                             </div>
                         </div>
@@ -70,17 +70,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 0; $i < count($superAdmin); $i++)
+                                @for ($i = 0; $i < count($admin); $i++)
                                     <tr>
-                                        <td class="table-plus">{{ $superAdmin[$i]['id'] }}</td>
+                                        <td class="table-plus">{{ $admin[$i]['id'] }}</td>
 
-                                        <td><img class="card-image" src="{{ asset($superAdmin[$i]['image']) }}"
-                                                alt="Wrong Path" style="display: flex;height: 100px; width: 100px;"></img>
+                                        <td><img class="card-image" src="{{ asset($admin[$i]['image']) }}" alt="Wrong Path"
+                                                style="display: flex;height: 100px; width: 100px;"></img>
                                         </td>
-                                        <td>{{ $superAdmin[$i]['Name'] }}</td>
-                                        <td>{{ $superAdmin[$i]['Mobile'] }}</td>
-                                        <td>{{ $superAdmin[$i]['Email'] }}</td>
-                                        <td>{{ $superAdmin[$i]['Gender'] }}</td>
+                                        <td>{{ $admin[$i]['Name'] }}</td>
+                                        <td>{{ $admin[$i]['Mobile'] }}</td>
+                                        <td>{{ $admin[$i]['Email'] }}</td>
+                                        <td>{{ $admin[$i]['Gender'] }}</td>
 
                                         <td>
 
@@ -111,7 +111,7 @@
 
     </div>
 
-    <div class="modal fade" id="superAdmin_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="admin_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -137,8 +137,8 @@
 
                         </div>
                         <div class="form-group" style="display: none;">
-                            {{-- <label>UserType</label> --}}
-                            <input class="form-control" type="text" value="Super Admin" name="type" readonly>
+
+                            <input class="form-control" type="text" value="Admin" name="type" readonly>
                         </div>
 
                         <div class="form-group">
