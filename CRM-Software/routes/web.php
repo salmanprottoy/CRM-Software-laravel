@@ -23,3 +23,4 @@ Route::post('/superAdmin_home/superAdmin_list/create', 'superAdmin_homeControlle
 Route::get('/superAdmin_home/superAdmin_list/search', 'superAdmin_homeController@search')->name('superAdmin.superAdmin.search');
 Route::get('/superAdmin_home/admin_list', 'superAdmin_homeController@admin_show')->name('superAdmin.admin');
 Route::post('/superAdmin_home/admin_list/create', 'superAdmin_homeController@admin_create')->name('superAdmin.admin.create');
+Route::post('/superAdmin_home/admin_list/admin_id_search', 'superAdmin_homeController@admin_id_search')->name('superAdmin.admin.id_search');

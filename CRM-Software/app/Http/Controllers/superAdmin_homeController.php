@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Http\Requests\superAdminRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\superAdmin;
@@ -32,7 +33,7 @@ class superAdmin_homeController extends Controller
         return view('superAdmin.superAdmin_list')->with('superAdmin', $superAdmin_list);
     }
 
-    public function superAdmin_create(Request $req)
+    public function superAdmin_create(superAdminRequest $req)
     {
 
         $superAdmin_create = array();
@@ -96,6 +97,12 @@ class superAdmin_homeController extends Controller
                 );
                 return Redirect()->Back()->with($alert);
             }
+        } else {
+            $alert = array(
+                'messege' => 'No image Inserted',
+                'alert-type' => 'warning'
+            );
+            return Redirect()->Back()->with($alert);
         }
     }
     public function search(Request $req)
@@ -105,26 +112,11 @@ class superAdmin_homeController extends Controller
             // error_log($value);
             $found = DB::table('supadmin')->where('username', $value)->get();
             //    error_log($found);
-            // $total_row = $found->count();
-            // if($total_row > 0){
 
-            // }
             return response()->json($found);
         } else {
             return Redirect()->Back();
         }
-
-        // echo '<script>alert("Welcome to Geeks for Geeks")</script>';
-        //error_log($req->get('search'));
-        // $posts = superAdmin::where('username', $req->get('search'))->get();
-        // echo '<script>alert("Welcome to Geeks for Geeks")</script>';
-        // //return json_encode($posts);
-        // return response()->json($posts);
-        // $search = $req->username;
-        //error_log($posts);
-        // $found = superAdmin::where('username', $search)->get();
-        // error_log($found);
-        // return json_encode($found);
     }
 
     public function admin_show()
@@ -198,6 +190,20 @@ class superAdmin_homeController extends Controller
                 );
                 return Redirect()->Back()->with($alert);
             }
+        }
+    }
+
+    public function admin_id_search(Request $req)
+    {
+        if ($req->ajax()) {
+            $value = $req->get('search');
+            error_log($value);
+            $found = DB::table('supadmin')->where('id', $value)->get();
+            error_log($found);
+
+            return response()->json($found);
+        } else {
+            return Redirect()->Back();
         }
     }
 }

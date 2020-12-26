@@ -29,10 +29,10 @@
 
 
                 <!-- <div class="card-box mb-30" style="float: right; padding-right: 20px; padding-top: 20px;">
-                                                                                                                    <a href="/user/create">
-                                                                                                                        <button type="button" class="btn btn-primary">Primary</button>
-                                                                                                                    </a>
-                                                                                                                 </div> -->
+                                                                                                                                                <a href="/user/create">
+                                                                                                                                                    <button type="button" class="btn btn-primary">Primary</button>
+                                                                                                                                                </a>
+                                                                                                                                             </div> -->
 
 
 
@@ -92,6 +92,10 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+                                                    <a class="dropdown-item edit_admin" id="{{ $admin[$i]['id'] }}"
+                                                        data-toggle="modal" data-target="#admin_edit"><i
+                                                            class="dw dw-eye"></i> Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Delete</a>
 
                                                 </div>
                                             </div>
@@ -186,6 +190,33 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="admin_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div id="editAdmin"></div>
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" id=btn_insert name="infoUpdate" value="Insert">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         function triggerClick() {
             document.querySelector('#file').click();
@@ -201,10 +232,13 @@
             }
         }
         $(document).ready(function() {
+
+
             $("#unamecreate").focus(function() {
 
                 $('#alert').html("");
             });
+
             $('#unamecreate').focusout(function() {
                 var username = $("#unamecreate").val();
                 // alert("hi");
@@ -242,6 +276,9 @@
 
                 });
             });
+
+
+
         })
 
     </script>
