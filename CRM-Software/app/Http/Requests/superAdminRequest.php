@@ -28,7 +28,7 @@ class superAdminRequest extends FormRequest
             'type'  => 'required',
             'name'  => 'required|min:4',
             'username' => 'required|min:3',
-            'mobile' => 'required|numeric|max:11',
+            'mobile' => 'required|numeric|digits:11',
             'email' => 'required|email',
             'gender' => 'required',
             'address' => 'required'

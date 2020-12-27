@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/superAdmin_home', 'superAdmin_homeController@index')->name('superAdmin.index');
 Route::get('/superAdmin_home/superAdmin_list', 'superAdmin_homeController@superAdmin_show')->name('superAdmin.superAdmin');
-Route::post('/superAdmin_home/superAdmin_list/create', 'superAdmin_homeController@superAdmin_create')->name('superAdmin.superAdmin.create');
-Route::get('/superAdmin_home/superAdmin_list/search', 'superAdmin_homeController@search')->name('superAdmin.superAdmin.search');
+Route::post('/superAdmin_home/superAdmin_list/create', 'superAdminController@superAdmin_create')->name('superAdmin.superAdmin.create');
+Route::get('/superAdmin_home/superAdmin_list/search', 'superAdminController@search')->name('superAdmin.superAdmin.search');
 Route::get('/superAdmin_home/admin_list', 'superAdmin_homeController@admin_show')->name('superAdmin.admin');
-Route::post('/superAdmin_home/admin_list/create', 'superAdmin_homeController@admin_create')->name('superAdmin.admin.create');
-Route::post('/superAdmin_home/admin_list/admin_id_search', 'superAdmin_homeController@admin_id_search')->name('superAdmin.admin.id_search');
+Route::post('/superAdmin_home/admin_list/create', 'AdminController@admin_create')->name('superAdmin.admin.create');
+Route::get('/superAdmin_home/admin_list/edit/{id}', 'AdminController@show')->name('superAdmin.admin.show');
+//Route::post('/superAdmin_home/admin_list/edit/{id}', 'superAdmin_homeController@update')->name('superAdmin.admin.update');

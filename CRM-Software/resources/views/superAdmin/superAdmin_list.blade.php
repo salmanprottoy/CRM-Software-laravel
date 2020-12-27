@@ -150,15 +150,11 @@
                             {{-- <input type="file"
                                 class="form-control-file form-control height-auto" name="image">
                             --}}
-                            <img src='@if (!empty(old(' image')))
-
-                            {{ asset(old('image')) }}
-                        @else
-                            {{ asset('assets/uploads/user.jpg') }}
-                            @endif' onclick="triggerClick()" id="profileDisplay"
-                            class="center" value="{{ old('image') }}"
-                            style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto;
-                            margin-right: auto;"><br>
+                            <img src='
+                                    {{ asset('assets/uploads/user.jpg') }}
+                                    ' onclick="triggerClick()" id="profileDisplay" class="center"
+                                value="{{ old('image') }}" style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto;
+                                    margin-right: auto;"><br>
                             <input type="file" class="form-control-file form-control height-auto" name="image"
                                 accept=" image/*" value="{{ old('image') }}" onchange="displayImage(this)" id="file"
                                 style="display:none;">
@@ -177,7 +173,7 @@
                         <div class=" form-group">
                             {{-- <label>Username</label> --}}
                             <input class="form-control" type="text" placeholder="User Name" id="unamecreate"
-                                value="{{ old('unsername') }}" name=" username">
+                                value="{{ old('username') }}" name=" username">
                             <div id="alert">
 
                             </div>

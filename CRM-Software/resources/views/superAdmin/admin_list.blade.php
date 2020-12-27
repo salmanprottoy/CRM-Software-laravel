@@ -28,13 +28,14 @@
 
 
 
-                <!-- <div class="card-box mb-30" style="float: right; padding-right: 20px; padding-top: 20px;">
-                                                                                                                                                <a href="/user/create">
-                                                                                                                                                    <button type="button" class="btn btn-primary">Primary</button>
-                                                                                                                                                </a>
-                                                                                                                                             </div> -->
-
-
+                @if (!empty($errors->all()))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Oopppssss!</strong> {{ 'Insertion failed' }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
                 <div class="card-box mb-30">
                     <div class="pd-20">
@@ -93,7 +94,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item edit_admin" id="{{ $admin[$i]['id'] }}"
-                                                        data-toggle="modal" data-target="#admin_edit"><i
+                                                        href="{{ route('superAdmin.admin.show', $admin[$i]['id']) }}"><i
                                                             class="dw dw-eye"></i> Edit</a>
                                                     <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Delete</a>
 
@@ -127,7 +128,15 @@
                 <div class="modal-body">
                     <form action="{{ route('superAdmin.superAdmin.create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @foreach ($errors->all() as $err)
 
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ $err }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endforeach
                         <div class="form-group">
                             <label>Image</label>
                             {{-- <input type="file"
