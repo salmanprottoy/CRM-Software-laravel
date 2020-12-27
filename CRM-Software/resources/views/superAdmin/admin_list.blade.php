@@ -96,7 +96,10 @@
                                                     <a class="dropdown-item edit_admin" id="{{ $admin[$i]['id'] }}"
                                                         href="{{ route('superAdmin.admin.show', $admin[$i]['id']) }}"><i
                                                             class="dw dw-eye"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Delete</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('superAdmin.admin.destroy', $admin[$i]['id']) }}"
+                                                        id="delete"><i class="dw dw-eye"></i>
+                                                        Delete</a>
 
                                                 </div>
                                             </div>

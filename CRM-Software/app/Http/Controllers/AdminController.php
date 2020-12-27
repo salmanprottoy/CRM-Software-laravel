@@ -152,4 +152,15 @@ class AdminController extends Controller
             }
         }
     }
+    public function destroy($id)
+    {
+        $delete_admin = DB::table('supadmin')->where('id', $id)->delete();
+        if ($delete_admin) {
+            $alert = array(
+                'messege' => ' Admin deleted Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($alert);
+        }
+    }
 }
