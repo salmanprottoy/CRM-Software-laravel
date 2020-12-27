@@ -26,13 +26,26 @@
                 </div>
 
 
+                {{-- @foreach ($errors->all() as $err)
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Warning!</strong> {{ $err }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endforeach --}}
+
+                @if (!empty($errors->all()))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Oopppssss!</strong> {{ 'Insertion failed' }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
 
 
-                <!-- <div class="card-box mb-30" style="float: right; padding-right: 20px; padding-top: 20px;">
-                                                                    <a href="/user/create">
-                                                                        <button type="button" class="btn btn-primary">Primary</button>
-                                                                    </a>
-                                                                 </div> -->
 
 
 
@@ -123,17 +136,28 @@
                 <div class="modal-body">
                     <form action="{{ route('superAdmin.superAdmin.create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @foreach ($errors->all() as $err)
 
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ $err }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endforeach
                         <div class="form-group">
                             <label>Image</label>
                             {{-- <input type="file"
                                 class="form-control-file form-control height-auto" name="image">
                             --}}
-                            <img src=" {{ asset('assets/uploads/user.jpg') }}" onclick="triggerClick()" id="profileDisplay"
-                                class="center"
-                                style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto; margin-right: auto;"><br>
+                            <img src='
+                                    {{ asset('assets/uploads/user.jpg') }}
+                                    ' onclick="triggerClick()" id="profileDisplay" class="center"
+                                value="{{ old('image') }}" style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto;
+                                    margin-right: auto;"><br>
                             <input type="file" class="form-control-file form-control height-auto" name="image"
-                                accept="image/*" onchange="displayImage(this)" id="file" style="display:none;">
+                                accept=" image/*" value="{{ old('image') }}" onchange="displayImage(this)" id="file"
+                                style="display:none;">
 
                         </div>
                         <div class="form-group" style="display: none;">
@@ -143,36 +167,47 @@
 
                         <div class="form-group">
                             {{-- <label>Name</label> --}}
-                            <input class="form-control" placeholder="Name" type="text" name="name">
+                            <input class="form-control" placeholder="Name" type="text" name="name"
+                                value="{{ old('name') }}">
                         </div>
-                        <div class="form-group">
+                        <div class=" form-group">
                             {{-- <label>Username</label> --}}
                             <input class="form-control" type="text" placeholder="User Name" id="unamecreate"
-                                name="username">
-                            <div id="alert" style="color:red">
+                                value="{{ old('username') }}" name=" username">
+                            <div id="alert">
 
                             </div>
                         </div>
                         <div class="form-group">
                             {{-- <label>Mobile</label> --}}
-                            <input class="form-control" placeholder="Mobile Number" type="number" name="mobile">
+                            <input class="form-control" placeholder="Mobile Number" type="number" name="mobile"
+                                value="{{ old('mobile') }}">
                         </div>
-                        <div class="form-group">
+                        <div class=" form-group">
                             {{-- <label>Email</label> --}}
-                            <input class="form-control" placeholder="Email" type="email" name="email">
+                            <input class="form-control" placeholder="Email" type="email" name="email"
+                                value="{{ old('email') }}">
                         </div>
                         <div class="form-group">
                             {{-- <label>Gender</label> --}}
                             <select class="form-control" name="gender">
-                                <option disabled selected>Choose Gender..</option>
+                                <option disabled selected>
+                                    @if (!empty(old('gender')))
+                                        {{ old('gender') }}
+                                    @else
+                                        Choose Gender
+                                    @endif
+                                </option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Others</option>
+
                             </select>
                         </div>
                         <div class="form-group">
                             {{-- <label>Address</label> --}}
-                            <textarea class="form-control" placeholder="Address" name="address"></textarea>
+                            <textarea class="form-control" placeholder="Address"
+                                name="address">{{ old('address') }}</textarea>
                         </div>
 
 
@@ -186,6 +221,8 @@
             </div>
         </div>
     </div>
+
+
     <script>
         function triggerClick() {
             document.querySelector('#file').click();
