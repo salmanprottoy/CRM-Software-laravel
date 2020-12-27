@@ -24,4 +24,4 @@ Route::get('/superAdmin_home/superAdmin_list/search', 'superAdminController@sear
 Route::get('/superAdmin_home/admin_list', 'superAdmin_homeController@admin_show')->name('superAdmin.admin');
 Route::post('/superAdmin_home/admin_list/create', 'AdminController@admin_create')->name('superAdmin.admin.create');
 Route::get('/superAdmin_home/admin_list/edit/{id}', 'AdminController@show')->name('superAdmin.admin.show');
-//Route::post('/superAdmin_home/admin_list/edit/{id}', 'superAdmin_homeController@update')->name('superAdmin.admin.update');
+Route::post('/superAdmin_home/admin_list/edit/{id}', 'AdminController@update')->name('superAdmin.admin.update');

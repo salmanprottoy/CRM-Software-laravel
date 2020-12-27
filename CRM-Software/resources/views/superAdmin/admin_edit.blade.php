@@ -84,7 +84,7 @@
                         <div class="form-group">
                             {{-- <label>Gender</label> --}}
                             <select class="form-control" name="gender">
-                                <option disabled selected>{{ $Gender }}</option>
+                                <option selected value="{{ $Gender }}">{{ $Gender }}</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Others</option>
@@ -99,7 +99,7 @@
 
 
 
-                        <input type="submit" class="btn btn-primary" id=btn_insert name="infoUpdate" value="Insert">
+                        <input type="submit" class="btn btn-success" id=btn_insert name="infoUpdate" value="Insert">
 
                     </form>
 
@@ -109,20 +109,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function triggerClick() {
-            document.querySelector('#file').click();
-        }
 
-        function displayImage(e) {
-            if (e.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.querySelector('#profileDisplay').setAttribute('src', e.target.result)
-                }
-                reader.readAsDataURL(e.files[0]);
-            }
-        }
-
-    </script>
 @endsection

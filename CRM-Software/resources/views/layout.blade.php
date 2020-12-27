@@ -91,6 +91,7 @@
 	<script src="{{asset('assets/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
 	<script src="{{asset('assets/vendors/scripts/datatable-setting.js')}}"></script>
+	<script src="{{ asset('assets/js/image.js') }}"></script>
 
 	{{-- <script src="{{asset('assets/src/darkmode-js/darkmode.js')}}"></script>
 <script>var DarkMode = new DarkMode();</script> --}}
