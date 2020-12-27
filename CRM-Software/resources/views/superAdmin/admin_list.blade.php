@@ -96,7 +96,10 @@
                                                     <a class="dropdown-item edit_admin" id="{{ $admin[$i]['id'] }}"
                                                         href="{{ route('superAdmin.admin.show', $admin[$i]['id']) }}"><i
                                                             class="dw dw-eye"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Delete</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('superAdmin.admin.destroy', $admin[$i]['id']) }}"
+                                                        id="delete"><i class="dw dw-eye"></i>
+                                                        Delete</a>
 
                                                 </div>
                                             </div>
@@ -227,19 +230,7 @@
         </div>
     </div>
     <script>
-        function triggerClick() {
-            document.querySelector('#file').click();
-        }
-
-        function displayImage(e) {
-            if (e.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.querySelector('#profileDisplay').setAttribute('src', e.target.result)
-                }
-                reader.readAsDataURL(e.files[0]);
-            }
-        }
+        // 
         $(document).ready(function() {
 
 

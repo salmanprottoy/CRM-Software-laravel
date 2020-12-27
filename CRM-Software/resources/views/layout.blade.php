@@ -91,6 +91,7 @@
 	<script src="{{asset('assets/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
 	<script src="{{asset('assets/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
 	<script src="{{asset('assets/vendors/scripts/datatable-setting.js')}}"></script>
+	<script src="{{ asset('assets/js/image.js') }}"></script>
 
 	{{-- <script src="{{asset('assets/src/darkmode-js/darkmode.js')}}"></script>
 <script>var DarkMode = new DarkMode();</script> --}}
@@ -120,6 +121,7 @@
   autoMatchOsTheme: true // default: true --}}
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script>
 		toastr.options = {
   "closeButton": true,
@@ -142,6 +144,26 @@
 				break;
 		}
 	  @endif
-   </script>  
+   </script> 
+   <script>  
+	$(document).on("click", "#delete", function(e){
+		e.preventDefault();
+		var link = $(this).attr("href");
+		   swal({
+			 title: "Are you Want to delete?",
+			 text: "Once Delete, This will be Permanently Delete!",
+			 icon: "warning",
+			 buttons: true,
+			 dangerMode: true,
+		   })
+		   .then((willDelete) => {
+			 if (willDelete) {
+				  window.location.href = link;
+			 } else {
+			   swal("Safe Data!");
+			 }
+		   });
+	   });
+</script> 
 </body>
 </html>
