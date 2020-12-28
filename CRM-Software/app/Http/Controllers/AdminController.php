@@ -86,7 +86,7 @@ class AdminController extends Controller
         return view('superAdmin.admin_edit', $admin);
     }
 
-    public function update(AdminRequest $req, $id)
+    public function  update($id, AdminRequest $req)
     {
         $oldimage = $req->old_image;
         $admin_create = array();
@@ -95,12 +95,7 @@ class AdminController extends Controller
         $admin_create['Email'] = $req->email;
         $admin_create['Gender'] = $req->gender;
         $admin_create['Address'] = $req->address;
-        // $user_create = array();
-        // $admin_create['type'] = $req->type;
-        // $admin_create['username'] = $req->username;
-        // $admin_create['password'] = Str::random(4);
-        // error_log($admin_create['password']);
-        // error_log($admin_create['type']);
+
 
         $image = $req->file('image');
         if ($image) {
@@ -168,7 +163,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $data = DB::table('supadmin')->where('id', $id)->first();
-        $delete_image = $data->images;
+        $delete_image = $data->image;
         unlink($delete_image);
         $delete_admin = DB::table('supadmin')->where('id', $id)->delete();
         if ($delete_admin) {
