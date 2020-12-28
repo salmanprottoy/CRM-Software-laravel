@@ -88,6 +88,7 @@ class AdminController extends Controller
 
     public function update(AdminRequest $req, $id)
     {
+        $oldimage = $req->old_image;
         $admin_create = array();
         $admin_create['Name'] = $req->name;
         $admin_create['Mobile'] = $req->mobile;
@@ -103,6 +104,7 @@ class AdminController extends Controller
 
         $image = $req->file('image');
         if ($image) {
+            unlink($oldimage);
             $image_name = date('dmy_H_s_i');
             $image_ext = strtolower($image->getClientOriginalExtension());
             $fileextstored = array('png', 'jpg', 'jpeg');
@@ -113,7 +115,7 @@ class AdminController extends Controller
                 $image_move = $image->move($upload_path, $image_fullname);
                 if ($image_move) {
                     $admin_create['image'] = $image_url;
-                    $admin_add = DB::table('supadmin')->update($admin_create);
+                    $admin_add = DB::table('supadmin')->where('id', $id)->update($admin_create);
                     if ($admin_add) {
                         // $user_add = DB::table('adminuser')->insert($user_create);
                         // if ($user_add) {
@@ -150,10 +152,24 @@ class AdminController extends Controller
                 );
                 return Redirect()->Back()->with($alert);
             }
+        } else {
+            $admin_add = DB::table('supadmin')->where('id', $id)->update($admin_create);
+            if ($admin_add) {
+                // $user_add = DB::table('adminuser')->insert($user_create);
+                // if ($user_add) {
+                $alert = array(
+                    'messege' => ' Admin updated Successfully',
+                    'alert-type' => 'success'
+                );
+                return Redirect()->route('superAdmin.admin')->with($alert);
+            }
         }
     }
     public function destroy($id)
     {
+        $data = DB::table('supadmin')->where('id', $id)->first();
+        $delete_image = $data->images;
+        unlink($delete_image);
         $delete_admin = DB::table('supadmin')->where('id', $id)->delete();
         if ($delete_admin) {
             $alert = array(
