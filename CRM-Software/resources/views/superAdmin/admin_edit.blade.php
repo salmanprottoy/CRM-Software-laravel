@@ -100,7 +100,7 @@
 
 
 
-                        <input type="submit" class="btn btn-success" id=btn_insert name="infoUpdate" value="Insert">
+                        <input type="submit" class="btn btn-outline-success btn-lg btn-block" id=btn_insert name="infoUpdate" value="Insert">
 
                     </form>
 

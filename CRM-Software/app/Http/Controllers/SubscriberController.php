@@ -4,82 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\subscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubscriberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function destroy($id)
     {
-        //
+        // $data = DB::table('subscriber')->where('id', $id)->first();
+        // $delete_image = $data->Company_logo;
+        // unlink($delete_image);
+        $delete_subscriber = DB::table('subscriber')->where('id', $id)->delete();
+        if ($delete_subscriber) {
+            $alert = array(
+                'messege' => ' subscriber deleted Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($alert);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function block($id)
     {
-        //
+        $subscriber_update = array();
+        $subscriber_update['status'] = 'block';
+        $block_subscriber = DB::table('subscriber')->where('id', $id)->update($subscriber_update);
+        if ($block_subscriber) {
+            $alert = array(
+                'messege' => ' subscriber Blocked Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($alert);
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\subscriber  $subscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function show(subscriber $subscriber)
+    public function unblock($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\subscriber  $subscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(subscriber $subscriber)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\subscriber  $subscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, subscriber $subscriber)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\subscriber  $subscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(subscriber $subscriber)
-    {
-        //
+        $subscriber_update = array();
+        $subscriber_update['status'] = 'unblock';
+        $block_subscriber = DB::table('subscriber')->where('id', $id)->update($subscriber_update);
+        if ($block_subscriber) {
+            $alert = array(
+                'messege' => ' subscriber Unblocked Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($alert);
+        }
     }
 }

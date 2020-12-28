@@ -159,9 +159,23 @@
 		   .then((willDelete) => {
 			 if (willDelete) {
 				  window.location.href = link;
-			 } else {
-			   swal("Safe Data!");
-			 }
+			 } 
+		   });
+	   });
+	   $(document).on("click", "#block", function(e){
+		e.preventDefault();
+		var link = $(this).attr("href");
+		   swal({
+			 title: "Are you Want to block?",
+			 text: "Once Delete, This will be Permanently Delete!",
+			 icon: "warning",
+			 buttons: true,
+			 dangerMode: true,
+		   })
+		   .then((willDelete) => {
+			 if (willDelete) {
+				  window.location.href = link;
+			 } 
 		   });
 	   });
 </script> 

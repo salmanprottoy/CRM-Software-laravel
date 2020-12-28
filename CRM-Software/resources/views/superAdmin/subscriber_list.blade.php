@@ -72,7 +72,12 @@
                             </thead>
                             <tbody>
                                 @for ($i = 0; $i < count($subscriber); $i++)
-                                    <tr>
+                                    <tr 
+                                    @if($subscriber[$i]['status'] == 'block')
+                                    style="color:red;"
+                                    @else
+                                    @endif
+                                    >
                                         <td class="table-plus">{{ $subscriber[$i]['id'] }}</td>
 
                                         <td><img class="card-image" src="{{ asset($subscriber[$i]['Company_logo']) }}" alt="Wrong Path"
@@ -81,7 +86,15 @@
                                         <td>{{ $subscriber[$i]['Company_Name'] }}</td>
                                         <td>{{ $subscriber[$i]['Company_Contact'] }}</td>
                                         <td>{{ $subscriber[$i]['Company_Email'] }}</td>
-                                        <td>{{ $subscriber[$i]['Subscription_Type'] }}</td>
+                                        <td >
+                                            @if($subscriber[$i]['Subscription_Type'] == 'Advan')
+                                            <button type="button" class="btn btn-warning btn-sm">{{ $subscriber[$i]['Subscription_Type'] }}</button>
+                                            @elseif($subscriber[$i]['Subscription_Type'] == 'Stand')
+                                            <button type="button" class="btn btn-info btn-sm">{{ $subscriber[$i]['Subscription_Type'] }}</button>
+                                            @else
+                                            <button type="button" class="btn btn-danger btn-sm">{{ $subscriber[$i]['Subscription_Type'] }}</button>
+                                            @endif
+                                        </td>
 
                                         <td>
 
@@ -93,11 +106,14 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                                    <a class="dropdown-item edit_admin" id="{{ $subscriber[$i]['id'] }}"
-                                                        href="{{ route('superAdmin.admin.show', $subscriber[$i]['id']) }}"><i
-                                                            class="dw dw-eye"></i> Block</a>
+                                                    @if($subscriber[$i]['status'] == 'unblock')
+                                                    <a class="dropdown-item edit_admin" id="block" href="{{ route('superAdmin.subscriber.block', $subscriber[$i]['id']) }}"><i class="dw dw-eye" ></i> Block</a>
+                                                    @elseif($subscriber[$i]['status'] == 'block')
+                                                    <a class="dropdown-item edit_admin" id="block" href="{{ route('superAdmin.subscriber.unblock', $subscriber[$i]['id']) }}"><i class="dw dw-eye" ></i> Unblock</a>
+                                                    @else
+                                                    @endif
                                                     <a class="dropdown-item"
-                                                        href="{{ route('superAdmin.admin.destroy', $subscriber[$i]['id']) }}"
+                                                        href="{{ route('superAdmin.subscriber.destroy', $subscriber[$i]['id']) }}"
                                                         id="delete"><i class="dw dw-eye"></i>
                                                         Delete</a>
 
