@@ -34,7 +34,7 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">Subscriber</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="/supAdmin_home/subscriber">Manage Subscriber</a></li>
+                        <li><a href="{{route('superAdmin.subscriber')}}">Manage Subscriber</a></li>
                         <li><a href="/supAdmin_home/feedbacks">Feedbacks</a> </li>
                         <li><a href="/supAdmin_home/verification">Verification</a> </li>
 

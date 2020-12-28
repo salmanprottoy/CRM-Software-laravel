@@ -53,6 +53,7 @@
                                 style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto; margin-right: auto;"><br>
                             <input type="file" class="form-control-file form-control height-auto" name="image"
                                 accept="image/*" onchange="displayImage(this)" id="file" style="display:none;">
+                                <input type="text" class=" form-control" name="old_image" style="display:block" value="{{$image}}">
 
                         </div>
                         <div class="form-group" style="display: none;">
@@ -99,7 +100,7 @@
 
 
 
-                        <input type="submit" class="btn btn-success" id=btn_insert name="infoUpdate" value="Insert">
+                        <input type="submit" class="btn btn-outline-success btn-lg btn-block" id=btn_insert name="infoUpdate" value="Insert">
 
                     </form>
 
