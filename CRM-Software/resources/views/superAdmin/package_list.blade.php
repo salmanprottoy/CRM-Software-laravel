@@ -26,7 +26,7 @@
 
 
 			<div class="pull-right">
-				<a href="/supAdmin_home/package/edit">
+				<a href="{{route('superAdmin.package.show')}}">
 					<button type="button" class="btn btn-primary">Edit Package</button>
 				</a>
 			</div>
