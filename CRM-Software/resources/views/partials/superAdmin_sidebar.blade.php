@@ -41,7 +41,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/supAdmin_home/package" class="dropdown-toggle no-arrow">
+                    <a href="{{route('superAdmin.package')}}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar1"></span><span class="mtext">Package</span>
                     </a>
                 </li>
