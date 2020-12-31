@@ -60,4 +60,18 @@ class superAdmin_homeController extends Controller
         //error_log($superAdmin_list);
         return view('superAdmin.package_list')->with('package', $data_decode);
     }
+
+    public function getstarted()
+    {
+        error_log('--------------------------------------------------------------------------------------------');
+        $data = file_get_contents('assets/json/package_list.json');
+        error_log('-----------------------------------------------' . $data . '---------------------------------------------');
+        $data_decode = json_decode($data, true);
+        //print_r($data_decode);
+        // error_log('-----------------------------------------------' . $data_decode . '---------------------------------------------');
+        error_log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=');
+
+        //error_log($superAdmin_list);
+        return view('getstarted')->with('package', $data_decode);
+    }
 }
