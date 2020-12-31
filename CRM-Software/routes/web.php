@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('superAdmin.index');
-// });
+Route::get('/', function () {
+    return view('landing');
+});
 
 //SUPERADMIN
 //superAdmin
@@ -36,5 +36,5 @@ Route::get('/superAdmin_home/subscriber_list/block/{id}', 'SubscriberController@
 Route::get('/superAdmin_home/subscriber_list/unblock/{id}', 'SubscriberController@unblock')->name('superAdmin.subscriber.unblock');
 //Package
 Route::get('/superAdmin_home/package_list', 'superAdmin_homeController@package_show')->name('superAdmin.package');
-Route::get('/superAdmin_home/package_list/edit', 'superAdmin_homeController@show')->name('superAdmin.package.show');
-Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@update')->name('superAdmin.package.update');
+Route::get('/superAdmin_home/package_list/edit', 'PackageController@show')->name('superAdmin.package.show');
+Route::post('/superAdmin_home/package_list/edit', 'PackageController@update')->name('superAdmin.package.update');
