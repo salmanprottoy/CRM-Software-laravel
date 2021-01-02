@@ -27,20 +27,24 @@ class SslCommerzPaymentController extends Controller
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
         $post_data = array();
-        $post_data['total_amount'] = '10'; # You cant not pay less than 10
+        $post_data['total_amount'] = $request->total_price; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
-        $post_data['cus_name'] = 'Customer Name';
-        $post_data['cus_email'] = 'customer@mail.com';
-        $post_data['cus_add1'] = 'Customer Address';
+        $post_data['cus_type'] = $request->package;
+        $post_data['total_emp'] = $request->cemployee;
+        $post_data['cmname'] = $request->cmname;
+        $post_data['cus_name'] = $request->cname;
+        $post_data['cus_email'] = $request->cemail;
+        $post_data['cus_add1'] = $request->caddress;
+        $post_data['date'] = $request->date;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = '8801XXXXXXXXX';
+        $post_data['cus_phone'] = $request->cmobile;
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
@@ -75,7 +79,11 @@ class SslCommerzPaymentController extends Controller
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency' => $post_data['currency'],
+                'type' => $post_data['cus_type'],
+                'total_employee' => $post_data['total_emp'],
+                'mname' => $post_data['cmname'],
+                'transaction_date' => $post_data['date']
             ]);
 
         $sslc = new SslCommerzNotification();
@@ -186,7 +194,8 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
-                echo "<br >Transaction is successfully Completed";
+                // echo "<br >Transaction is successfully Completed";
+                return redirect()->route('getstarted');
             } else {
                 /*
                 That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.

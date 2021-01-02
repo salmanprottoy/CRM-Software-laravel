@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Library\SslCommerz;
 
 class SslCommerzNotification extends AbstractSslCommerz
@@ -60,13 +61,13 @@ class SslCommerzNotification extends AbstractSslCommerz
                 curl_setopt($handle, CURLOPT_URL, $requested_url);
                 curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
 
-                 if ($this->config['connect_from_localhost']) {
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
-                 } else {
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 2);
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 2);
-                 }
+                if ($this->config['connect_from_localhost']) {
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
+                } else {
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 2);
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 2);
+                }
 
 
                 $result = curl_exec($handle);
@@ -159,9 +160,9 @@ class SslCommerzNotification extends AbstractSslCommerz
             $new_data = array();
             if (!empty($pre_define_key)) {
                 foreach ($pre_define_key as $value) {
-//                    if (isset($post_data[$value])) {
-                        $new_data[$value] = ($post_data[$value]);
-//                    }
+                    //                    if (isset($post_data[$value])) {
+                    $new_data[$value] = ($post_data[$value]);
+                    //                    }
                 }
             }
             # ADD MD5 OF STORE PASSWORD
@@ -179,7 +180,6 @@ class SslCommerzNotification extends AbstractSslCommerz
             if (md5($hash_string) == $post_data['verify_sign']) {
 
                 return true;
-
             } else {
                 $this->error = "Verification signature not matched";
                 return false;

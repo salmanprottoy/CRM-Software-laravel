@@ -60,6 +60,8 @@
                                     <input class="form-control" type="text" name="discount_price" id="discount_price"
                                         value="">
                                     <input class="form-control" type="text" name="total_price" id="total_price" value="">
+                                    {{ $date = date('Y/m/d H:i:s') }}
+                                    <input class="form-control" type="text" name="date" id="date" value="{{ $date }}">
                                 </div>
                                 <input type="submit" class="btn btn-outline-success btn-lg btn-block" id=btn_insert
                                     name="infoUpdate" value="Insert">
