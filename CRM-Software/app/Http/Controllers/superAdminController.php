@@ -84,6 +84,7 @@ class superAdminController extends Controller
     }
     public function search(Request $req)
     {
+
         if ($req->ajax()) {
             $value = $req->get('search');
             // error_log($value);
