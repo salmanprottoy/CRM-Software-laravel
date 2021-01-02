@@ -30,6 +30,7 @@ Route::get('/register/manager', 'RegisterController@manager_register')->name('re
 Route::post('/register/manager', 'RegisterController@manager_register_complete')->name('register.done');
 Route::get('/register/manager/manager_search', 'RegisterController@manager_search')->name('register.manager.search');
 Route::get('/register/manager/uname_search', 'RegisterController@uname_search')->name('register.uname.search');
+Route::get('/login/admin', 'LoginController@verify')->name('login.admin');
 
 
 

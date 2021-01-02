@@ -11,7 +11,7 @@
             </div>
             <div class="login-menu">
                 <ul>
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="{{ route('login') }}">Login</a></li>
                 </ul>
             </div>
         </div>
@@ -115,7 +115,7 @@
 
                     success: function(response) {
                         //alert('asdfafdfd');
-                        if (response.length != 0) {
+                        if (response != "") {
                             var alert =
                                 " <div class='alert alert-warning alert-dismissible fade show' role='alert'>"
                             alert += "<strong>Warning!</strong> Username already taken"
@@ -156,7 +156,7 @@
 
             $('#commname').focusout(function() {
                 var username = $("#commname").val();
-                alert("hi");
+                //  alert("hi");
                 $.ajax({
                     method: 'get',
 
@@ -168,10 +168,10 @@
 
                     success: function(response) {
                         //alert(response);
-                        if (response != "") {
+                        if (response == "") {
                             var alert =
                                 " <div class='alert alert-warning alert-dismissible fade show' role='alert'>"
-                            alert += "<strong>Warning!</strong> Username already taken"
+                            alert += "<strong>Warning!</strong> Payment not completed"
                             alert +=
                                 "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
                             alert += " <span aria-hidden='true'>&times;</span>"

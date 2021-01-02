@@ -79,7 +79,7 @@ class RegisterController extends Controller
                 'messege' => ' Registration failed',
                 'alert-type' => 'warning'
             );
-            return Redirect()->Back()->with($alert);
+            return Redirect()->route('login')->with($alert);
         }
     }
 
