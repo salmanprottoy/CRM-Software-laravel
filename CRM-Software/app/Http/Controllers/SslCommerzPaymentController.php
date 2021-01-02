@@ -192,10 +192,10 @@ class SslCommerzPaymentController extends Controller
                 */
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
-                    ->update(['status' => 'Processing']);
+                    ->update(['status' => 'Complete']);
 
                 // echo "<br >Transaction is successfully Completed";
-                return redirect()->route('getstarted');
+                return redirect()->route('register');
             } else {
                 /*
                 That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.

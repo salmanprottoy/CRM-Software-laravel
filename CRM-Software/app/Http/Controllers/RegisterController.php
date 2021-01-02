@@ -54,4 +54,63 @@ class RegisterController extends Controller
         );
         return Redirect()->Back()->with($alert);
     }
+
+    public function manager_register()
+    {
+        return view('landing.manager_register');
+    }
+    public function manager_register_complete(Request $req)
+    {
+        $register = array();
+        // $register['mname'] = $req->name;
+        $register['username'] = $req->username;
+        $register['password'] = $req->password;
+        $register['type'] = $req->type;
+
+        $register_manager = DB::table('user')->insert($register);
+        if ($register_manager) {
+            $alert = array(
+                'messege' => ' Registration Complete',
+                'alert-type' => 'success'
+            );
+            return Redirect()->Back()->with($alert);
+        } else {
+            $alert = array(
+                'messege' => ' Registration failed',
+                'alert-type' => 'warning'
+            );
+            return Redirect()->Back()->with($alert);
+        }
+    }
+
+    public function uname_search(Request $req)
+    {
+        if ($req->ajax()) {
+            $value = $req->get('search');
+            // error_log($value);
+            $found = DB::table('user')->where('username', $value)->get();
+            //    error_log($found);
+
+            return response()->json($found);
+        } else {
+            return Redirect()->Back();
+        }
+    }
+    public function manager_search(Request $req)
+    {
+        if ($req->ajax()) {
+            $value = $req->get('search');
+            error_log('---------------------------------------------------------------------------------------');
+            error_log($value);
+            $found = DB::table('orders')
+                ->where('mname', $value)
+                ->where('status', 'Complete')
+                ->get();
+            error_log($found);
+
+            return response()->json($found);
+        } else {
+            return Redirect()->Back();
+        }
+    }
 }
