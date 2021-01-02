@@ -38,3 +38,12 @@ Route::get('/superAdmin_home/subscriber_list/unblock/{id}', 'SubscriberControlle
 Route::get('/superAdmin_home/package_list', 'superAdmin_homeController@package_show')->name('superAdmin.package');
 Route::get('/superAdmin_home/package_list/edit', 'superAdmin_homeController@show')->name('superAdmin.package.show');
 Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@update')->name('superAdmin.package.update');
+
+//Accounting & Sells 
+Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
+Route::get('/accountingSellsHome/Customer', 'accountingSellsController@showCustomer')->name('accountingSellsHome.customer');
+Route::get('/accountingSellsHome/Product', 'accountingSellsController@showProduct')->name('accountingSellsHome.product');
+Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
+Route::get('/accountingSellsHome/Salary', 'accountingSellsController@showSalary')->name('accountingSellsHome.salary');
+Route::get('/accountingSellsHome/Calendar', 'accountingSellsController@showCalendar')->name('accountingSellsHome.calendar');
+Route::get('/accountingSellsHome/Report', 'accountingSellsController@showReport')->name('accountingSellsHome.report');
