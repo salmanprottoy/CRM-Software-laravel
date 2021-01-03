@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\superAdmin;
 use App\Models\subscriber;
+use App\Models\Order;
 
 
 class superAdmin_homeController extends Controller
@@ -59,5 +61,26 @@ class superAdmin_homeController extends Controller
 
         //error_log($superAdmin_list);
         return view('superAdmin.package_list')->with('package', $data_decode);
+    }
+
+    public function report_show()
+    {
+        $admin_list = superAdmin::where('type', 'Admin')->get();
+        //error_log($superAdmin_list);
+        $orders = Order::select(DB::raw('year(transaction_date) as Year'), DB::raw('month(transaction_date) as Month'), DB::raw('sum(amount) as Income'))
+            ->groupBy(DB::raw('year(transaction_date)'), DB::raw('month(transaction_date)'))
+            ->get();
+        //dd($orders);
+
+        $top10subs = Order::select('name', DB::raw('sum(amount) as Income'))
+            ->groupBy('name')
+            ->orderBy('Income', 'desc')
+            ->get();
+        //dd($top10subs);
+        //echo $top10subs;
+        return view('superAdmin.report')
+            ->with('admin', $admin_list)
+            ->with('orders', $orders)
+            ->with('top10subs', $top10subs);
     }
 }

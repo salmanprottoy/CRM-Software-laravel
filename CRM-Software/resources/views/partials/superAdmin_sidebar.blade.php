@@ -34,14 +34,14 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">Subscriber</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{route('superAdmin.subscriber')}}">Manage Subscriber</a></li>
+                        <li><a href="{{ route('superAdmin.subscriber') }}">Manage Subscriber</a></li>
                         <li><a href="/supAdmin_home/feedbacks">Feedbacks</a> </li>
                         <li><a href="/supAdmin_home/verification">Verification</a> </li>
 
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('superAdmin.package')}}" class="dropdown-toggle no-arrow">
+                    <a href="{{ route('superAdmin.package') }}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar1"></span><span class="mtext">Package</span>
                     </a>
                 </li>
@@ -56,18 +56,14 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="/supAdmin_home/meeting">Meeting</a></li>
-                        <li><a href="/supAdmin_home/feedbacks">Others</a> |</li>
+                        <li><a href="/supAdmin_home/feedbacks">Others</a></li>
 
 
                     </ul>
                 </li>
+
                 <li>
-                    <a href="/supAdmin_home/template" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-calendar1"></span><span class="mtext">Template</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/supAdmin_home/financial" class="dropdown-toggle no-arrow">
+                    <a href="{{ route('superAdmin.report') }}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar1"></span><span class="mtext">Financial Status</span>
                     </a>
                 </li>

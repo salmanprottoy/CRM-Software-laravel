@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
-use App\Mail\PaymentConfirmationMail;
-use Illuminate\Support\Facades\Mail;
+
 
 
 /*
@@ -83,8 +82,12 @@ Route::group(['middleware' => ['superadmin_sess']], function () {
 	Route::get('/superAdmin_home/package_list/edit', 'PackageController@show')->name('superAdmin.package.show');
 	Route::post('/superAdmin_home/package_list/edit', 'PackageController@update')->name('superAdmin.package.update');
 
-	Route::get('/superAdmin_home/package_list/edit', 'superAdmin_homeController@show')->name('superAdmin.package.show');
-	Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@update')->name('superAdmin.package.update');
+	// Route::get('/superAdmin_home/package_list/edit', 'superAdmin_homeController@show')->name('superAdmin.package.show');
+	// Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@update')->name('superAdmin.package.update');
+	//Report
+	Route::get('/superAdmin_home/report', 'superAdmin_homeController@report_show')->name('superAdmin.report');
+	Route::get('/superAdmin_home/report/download/{name}', 'AdminReportController@download')->name('report.download');
+	Route::get('/superAdmin_home/report/show/{name}', 'AdminReportController@show')->name('report.show');
 });
 
 
