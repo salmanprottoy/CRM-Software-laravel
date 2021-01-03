@@ -33,6 +33,15 @@
 
                         <form method="POST">
                             @csrf
+                            @foreach ($errors->all() as $err)
+
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Warning!</strong> {{ $err }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endforeach
                             <div class="input-group custom" style="display:none">
                                 <input type="text" class="form-control form-control-lg" value="Manager" name="type"
                                     readonly>
@@ -41,6 +50,16 @@
                                 </div>
                             </div>
                             <div class="input-group custom">
+                                <input type="text" class="form-control form-control-lg" placeholder="Transaction ID"
+                                    name="tran_id" id="tran_id">
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+                                </div>
+                                <div id="tran_alert">
+
+                                </div>
+                            </div>
+                            {{-- <div class="input-group custom">
                                 <input type="text" class="form-control form-control-lg" placeholder="Manager Name"
                                     name="cmname" id="commname">
                                 <div class="input-group-append custom">
@@ -49,7 +68,7 @@
                                 <div id="payment">
 
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="input-group custom">
                                 <input type="text" class="form-control form-control-lg" placeholder="Username"
                                     name="username" id="unamecreate">
@@ -138,6 +157,49 @@
 
                 });
             });
+            $("#tran_id").focus(function() {
+
+                $('#tran_alert').html("");
+            });
+
+            $('#tran_id').focusout(function() {
+                var username = $("#tran_id").val();
+                // alert("hi");
+                $.ajax({
+                    method: 'get',
+
+                    url: "{{ route('register.tran_id.search') }}",
+                    dataType: 'json',
+                    data: {
+                        search: username
+                    },
+
+                    success: function(response) {
+                        //alert('asdfafdfd');
+                        if (response == "") {
+                            var alert =
+                                " <div class='alert alert-warning alert-dismissible fade show' role='alert'>"
+                            alert += "<strong>Warning!</strong> Transaction id already taken"
+                            alert +=
+                                "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+                            alert += " <span aria-hidden='true'>&times;</span>"
+                            alert += " </button>"
+                            alert += "</div>"
+
+                            $('#tran_alert').html(alert);
+                            $("#tran_id").val("");
+                        } else {
+                            //  alert('asdfafdfd');
+                        }
+
+                    },
+                    error: function(error) {
+                        alert("Error");
+                    }
+
+                });
+            });
+
 
 
 
@@ -171,7 +233,7 @@
                         if (response == "") {
                             var alert =
                                 " <div class='alert alert-warning alert-dismissible fade show' role='alert'>"
-                            alert += "<strong>Warning!</strong> Payment not completed"
+                            alert += "<strong>Warning!</strong> Wrong Manager Name"
                             alert +=
                                 "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
                             alert += " <span aria-hidden='true'>&times;</span>"

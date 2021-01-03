@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -59,7 +60,7 @@ class RegisterController extends Controller
     {
         return view('landing.manager_register');
     }
-    public function manager_register_complete(Request $req)
+    public function manager_register_complete(RegisterRequest $req)
     {
         $register = array();
         // $register['mname'] = $req->name;
@@ -107,6 +108,19 @@ class RegisterController extends Controller
                 ->where('status', 'Complete')
                 ->get();
             error_log($found);
+
+            return response()->json($found);
+        } else {
+            return Redirect()->Back();
+        }
+    }
+    public function  tran_id_search(Request $req)
+    {
+        if ($req->ajax()) {
+            $value = $req->get('search');
+            // error_log($value);
+            $found = DB::table('orders')->where('transaction_id', $value)->get();
+            //    error_log($found);
 
             return response()->json($found);
         } else {

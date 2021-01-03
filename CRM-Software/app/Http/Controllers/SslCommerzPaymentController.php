@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Mail\PaymentConfirmationMail;
+use App\Models\Order;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -175,7 +178,6 @@ class SslCommerzPaymentController extends Controller
         $currency = $request->input('currency');
 
         $sslc = new SslCommerzNotification();
-
         #Check order status in order tabel against the transaction id or order id.
         $order_detials = DB::table('orders')
             ->where('transaction_id', $tran_id)
@@ -185,15 +187,22 @@ class SslCommerzPaymentController extends Controller
             $validation = $sslc->orderValidate($tran_id, $amount, $currency, $request->all());
 
             if ($validation == TRUE) {
-                /*
-                That means IPN did not work or IPN URL was not set in your merchant panel. Here you need to update order status
-                in order table as Processing or Complete.
-                Here you can also sent sms or email for successfull transaction to customer
-                */
+
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Complete']);
 
+
+                $mail_data = array(
+                    'tran_id' => $tran_id,
+                    'amount' => $amount,
+                    'currency' => $currency
+                );
+
+                $register_mail = Order::where('transaction_id', $tran_id)->first();
+                $mail = $register_mail['email'];
+                //print_r($mail);
+                Mail::to($mail)->send(new PaymentConfirmationMail($mail_data));
                 // echo "<br >Transaction is successfully Completed";
                 return redirect()->route('register');
             } else {

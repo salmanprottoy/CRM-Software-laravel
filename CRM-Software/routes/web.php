@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Mail\PaymentConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 
 /*
@@ -16,7 +18,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 */
 
 Route::get('/', function () {
-    return view('landing.landing');
+	return view('landing.landing');
 });
 // Route::get('/login', function () {
 //     return view('login.index');
@@ -27,11 +29,17 @@ Route::get('/getstarted/register/{package}', 'RegisterController@register')->nam
 Route::post('/getstarted/register/coupon', 'RegisterController@apply_coupon')->name('getstarted.coupon');
 Route::get('/getstarted/register/coupon/remove', 'RegisterController@remove_coupon')->name('coupon.remove');
 Route::get('/register/manager', 'RegisterController@manager_register')->name('register');
+Route::get('/register/manager/tran_id_search', 'RegisterController@tran_id_search')->name('register.tran_id.search');
 Route::post('/register/manager', 'RegisterController@manager_register_complete')->name('register.done');
 Route::get('/register/manager/manager_search', 'RegisterController@manager_search')->name('register.manager.search');
 Route::get('/register/manager/uname_search', 'RegisterController@uname_search')->name('register.uname.search');
-Route::get('/login/admin', 'LoginController@verify')->name('login.admin');
+Route::get('/login/admin', 'AdminloginController@index')->name('login.index.admin');
 
+
+// Route::get('/email', function () {
+// 	Mail::to('rayhanmahi999@gmail.com')->send(new PaymentConfirmationMail());
+// 	return new PaymentConfirmationMail();
+// });
 
 
 // SSLCOMMERZ Start
@@ -73,26 +81,34 @@ Route::post('/superAdmin_home/package_list/edit', 'PackageController@update')->n
 
 Route::get('/superAdmin_home/package_list/edit', 'superAdmin_homeController@show')->name('superAdmin.package.show');
 Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@update')->name('superAdmin.package.update');
-//marketing
-Route::group(['middleware'=>['checksession']],function(){
- 	Route::get('/markethome/profile','MarkethomeController@profile')->name('markethome.profile');
- 	Route::post('/markethome/profile','MarkethomeController@profileupdate');
- 	Route::resource('/markethome','MarkethomeController')->names([
- 		'index'=>'markethome.index',
- 		'update'=>'markethome.update'
- 	]);
- 	Route::get('/email/{table}/{id}', 'MarketUserController@sendmails')->name('market.mail');
- 	Route::post('/import/{table}', 'ImportController@import')->name('import.csv');
- 	Route::get('/chart/{type}', 'chartsController@index');
- 	Route::get('/chart/download/{type}', 'chartsController@downloadcharts')->name('charts.pdf');
- 	Route::get('/marketuser/pdf/{table}','MarketUserController@loadpdf')->name('marketuser.pdf');
- 	Route::get('/marketuser/search/{table}', 'MarketUserController@search')->name('live_search.action');
-	Route::post('/marketuser/create', 'MarketUserController@insert');
- 	Route::get('/marketuser/showinfo/{table}/{id}','MarketUserController@showinfo')->name('marketuser.profile');
- 	Route::post('/marketuser/showinfo/{table}/{id}','MarketUserController@updateinfo');
- 	Route::get('/marketuser/delete/{table}/{id}','MarketUserController@deleteuser')->name('marketuser.delete');
- 	Route::get('/marketuser/upgradestatus/{id}','MarketUserController@upgradestatus')->name('marketuser.upgradestatus');
- 	Route::resource('/marketuser', 'MarketUserController');
- });
- //marketing
 
+
+
+
+
+
+
+
+Route::get('/login', 'LoginController@index')->name('login');
+//marketing
+Route::group(['middleware' => ['checksession']], function () {
+	Route::get('/markethome/profile', 'MarkethomeController@profile')->name('markethome.profile');
+	Route::post('/markethome/profile', 'MarkethomeController@profileupdate');
+	Route::resource('/markethome', 'MarkethomeController')->names([
+		'index' => 'markethome.index',
+		'update' => 'markethome.update'
+	]);
+	Route::get('/email/{table}/{id}', 'MarketUserController@sendmails')->name('market.mail');
+	Route::post('/import/{table}', 'ImportController@import')->name('import.csv');
+	Route::get('/chart/{type}', 'chartsController@index');
+	Route::get('/chart/download/{type}', 'chartsController@downloadcharts')->name('charts.pdf');
+	Route::get('/marketuser/pdf/{table}', 'MarketUserController@loadpdf')->name('marketuser.pdf');
+	Route::get('/marketuser/search/{table}', 'MarketUserController@search')->name('live_search.action');
+	Route::post('/marketuser/create', 'MarketUserController@insert');
+	Route::get('/marketuser/showinfo/{table}/{id}', 'MarketUserController@showinfo')->name('marketuser.profile');
+	Route::post('/marketuser/showinfo/{table}/{id}', 'MarketUserController@updateinfo');
+	Route::get('/marketuser/delete/{table}/{id}', 'MarketUserController@deleteuser')->name('marketuser.delete');
+	Route::get('/marketuser/upgradestatus/{id}', 'MarketUserController@upgradestatus')->name('marketuser.upgradestatus');
+	Route::resource('/marketuser', 'MarketUserController');
+});
+ //marketing
