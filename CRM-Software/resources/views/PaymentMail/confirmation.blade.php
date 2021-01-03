@@ -1,13 +1,13 @@
 @component('mail::message')
-    # Your Transaction id is: {{ $mail_data['tran_id'] }}
+# Your Transaction id is: {!! $mail_data['tran_id'] !!}
 
-    Your payment for DeskApp 1 month subcription confirmed.
+Your payment for DeskApp 1 month subcription confirmed.
 
 
-    @component('mail::button', ['url' => 'http://localhost:8000/register/manager'])
+@component('mail::button', ['url' => 'http://localhost:8000/register/manager'])
         Click Here to Register
-    @endcomponent
+@endcomponent
 
-    Thanks,<br>
-    DeskApp
+Thanks,<br>
+DeskApp
 @endcomponent

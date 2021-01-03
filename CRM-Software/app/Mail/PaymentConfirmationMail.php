@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class PaymentConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $mail_data;
     /**
      * Create a new message instance.
      *
@@ -28,6 +28,6 @@ class PaymentConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('PaymentMail.confirmation')->with('mail_data', $this->mail_data);
+        return $this->markdown('PaymentMail.confirmation', ['mail_data', $this->mail_data]);
     }
 }

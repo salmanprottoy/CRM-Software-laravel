@@ -34,6 +34,8 @@ Route::post('/register/manager', 'RegisterController@manager_register_complete')
 Route::get('/register/manager/manager_search', 'RegisterController@manager_search')->name('register.manager.search');
 Route::get('/register/manager/uname_search', 'RegisterController@uname_search')->name('register.uname.search');
 Route::get('/login/admin', 'AdminloginController@index')->name('login.index.admin');
+Route::post('/login/admin', 'AdminloginController@verify')->name('login.verify.admin');
+Route::get('/logout/admin', 'AdminloginController@logout')->name('logout.admin');
 
 
 // Route::get('/email', function () {
