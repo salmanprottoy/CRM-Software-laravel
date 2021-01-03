@@ -9,15 +9,7 @@ use PDF;
 
 class AdminReportController extends Controller
 {
-    public function show($name)
-    {
-        if ($name == 'income') {
-            $orders = Order::select(DB::raw('year(transaction_date) as Year'), DB::raw('month(transaction_date) as Month'), DB::raw('sum(amount) as Income'))
-                ->groupBy(DB::raw('year(transaction_date)'), DB::raw('month(transaction_date)'))
-                ->get();
-            return view('superAdmin.income')->with('orders', $orders);
-        }
-    }
+
 
     public function download($name)
     {

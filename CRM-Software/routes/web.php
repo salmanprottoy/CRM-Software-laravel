@@ -87,7 +87,6 @@ Route::group(['middleware' => ['superadmin_sess']], function () {
 	//Report
 	Route::get('/superAdmin_home/report', 'superAdmin_homeController@report_show')->name('superAdmin.report');
 	Route::get('/superAdmin_home/report/download/{name}', 'AdminReportController@download')->name('report.download');
-	Route::get('/superAdmin_home/report/show/{name}', 'AdminReportController@show')->name('report.show');
 });
 
 
