@@ -26,6 +26,11 @@ Route::get('/getstarted', 'RegisterController@getstarted')->name('getstarted');
 Route::get('/getstarted/register/{package}', 'RegisterController@register')->name('getstarted.register');
 Route::post('/getstarted/register/coupon', 'RegisterController@apply_coupon')->name('getstarted.coupon');
 Route::get('/getstarted/register/coupon/remove', 'RegisterController@remove_coupon')->name('coupon.remove');
+Route::get('/register/manager', 'RegisterController@manager_register')->name('register');
+Route::post('/register/manager', 'RegisterController@manager_register_complete')->name('register.done');
+Route::get('/register/manager/manager_search', 'RegisterController@manager_search')->name('register.manager.search');
+Route::get('/register/manager/uname_search', 'RegisterController@uname_search')->name('register.uname.search');
+Route::get('/login/admin', 'LoginController@verify')->name('login.admin');
 
 
 
