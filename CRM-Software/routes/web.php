@@ -41,9 +41,26 @@ Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@upd
 
 //Accounting & Sells 
 Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
-Route::get('/accountingSellsHome/Customer', 'accountingSellsController@showCustomer')->name('accountingSellsHome.customer');
-Route::get('/accountingSellsHome/Product', 'accountingSellsController@showProduct')->name('accountingSellsHome.product');
-Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
 Route::get('/accountingSellsHome/Salary', 'accountingSellsController@showSalary')->name('accountingSellsHome.salary');
 Route::get('/accountingSellsHome/Calendar', 'accountingSellsController@showCalendar')->name('accountingSellsHome.calendar');
 Route::get('/accountingSellsHome/Report', 'accountingSellsController@showReport')->name('accountingSellsHome.report');
+//customer
+Route::get('/accountingSellsHome/Customer', 'accountingSellsController@showCustomer')->name('accountingSellsHome.customer');
+Route::get('/accountingSellsHome/Customer/create', 'accountingSellsController@createCustomer')->name('accountingSellsHome.customer.create');;
+Route::post('/accountingSellsHome/Customer/create', 'accountingSellsController@creatingCustomer')->name('accountingSellsHome.customer.creating');;
+Route::get('/accountingSellsHome/Customer/edit/{id}', 'accountingSellsController@editCustomer')->name('accountingSellsHome.customer.edit');
+Route::post('/accountingSellsHome/Customer/edit/{id}', 'accountingSellsController@updateCustomer')->name('accountingSellsHome.customer.update');
+Route::get('/accountingSellsHome/Customer/delete/{id}', 'accountingSellsController@deleteCustomer')->name('accountingSellsHome.customer.delete');
+Route::post('/accountingSellsHome/Customer/delete/{id}', 'accountingSellsController@deletingCustomer')->name('accountingSellsHome.customer.update');
+//product
+Route::get('/accountingSellsHome/Product', 'accountingSellsController@showProduct')->name('accountingSellsHome.product');
+Route::get('/accountingSellsHome/Product/create', 'accountingSellsController@createProduct')->name('accountingSellsHome.product.create');;
+Route::post('/accountingSellsHome/Product/create', 'accountingSellsController@creatingProduct')->name('accountingSellsHome.product.creating');;
+Route::get('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@editProduct')->name('accountingSellsHome.product.edit');
+Route::post('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@updateProduct')->name('accountingSellsHome.product.update');
+Route::get('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deleteProduct')->name('accountingSellsHome.product.delete');
+Route::post('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deletingProduct')->name('accountingSellsHome.product.update');
+//bankInfo
+Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
+Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
+Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');

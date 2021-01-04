@@ -38,9 +38,9 @@
                     </ul>
                 </li>
                 <li>
-                    <!-- <a href="{{ route('accountingSellsHome.calendar') }}" class="dropdown-toggle no-arrow">
+                    <a href="{{ route('accountingSellsHome.calendar') }}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar1"></span><span class="mtext">Calendar</span>
-                    </a> -->
+                    </a>
                 </li>
                 <!-- <li>
                     <a href="chat.html" class="dropdown-toggle no-arrow">

@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class customer extends Model
 {
-    use HasFactory;
+    protected $table = 'customer';
+    protected $primaryKey = "id";
+    public $timestamps = false;
 }

@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class salary extends Model
 {
-    use HasFactory;
+    protected $table = 'salary';
+    protected $primaryKey = "id";
+    public $timestamps = false;
 }
