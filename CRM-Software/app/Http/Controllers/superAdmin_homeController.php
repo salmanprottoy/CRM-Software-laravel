@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\superAdmin;
 use App\Models\subscriber;
 use App\Models\Order;
+use GuzzleHttp\Client;
 
 
 class superAdmin_homeController extends Controller
@@ -82,5 +83,29 @@ class superAdmin_homeController extends Controller
             ->with('admin', $admin_list)
             ->with('orders', $orders)
             ->with('top10subs', $top10subs);
+    }
+
+    public function coupon(Request $req)
+    {
+        $client = new Client();
+        // $temp = $req->get('user_email');
+        // $req->session()->put('checkemail', $temp);
+        $response = $client->request('GET', 'http://localhost:3000/home/getNode');
+        if ($response->getStatusCode() == 200) {
+            $data = json_decode($response->getBody(), true);
+            //$admins = $data['username'];
+            // print_r($admins);
+            // $req->session()->flash('print', true);
+            // return view('admin.adminlist')->with('admins', $admins);
+            $alert = array(
+                'messege' => ' Admin inserted Successfully',
+                'alert-type' => 'success'
+            );
+            return view('superAdmin.coupon')->with('coupon', $data)->with($alert);
+        } else {
+            // $admins = null;
+            // return view('admin.adminlist')->with('admins', $admins);
+            echo "Not get";
+        }
     }
 }
