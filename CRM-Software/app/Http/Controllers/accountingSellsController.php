@@ -114,6 +114,21 @@ class accountingSellsController extends Controller
         $productList = product::all();
         return view('accountingSellsHome.product')->with('productList', $productList);
     }
+    public function searchProduct(Request $req)
+    {
+        if ($req->ajax()) 
+        {
+            
+            $search = $req->get('search');
+            $searchBy = $req->get('searchBy');
+            $productList = product::where($req->searchBy, 'like', '%'.$req->search.'%')->get();
+            error_log($productList);
+            return response()->json($productList);
+        } 
+        else {
+            return Redirect()->Back();
+        }
+    }
     public function createProduct()
     {
         return view('accountingSellsHome.createProduct');

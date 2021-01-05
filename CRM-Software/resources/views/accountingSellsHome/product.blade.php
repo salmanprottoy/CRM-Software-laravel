@@ -23,23 +23,21 @@
 		</select>
         <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="Search Product" aria-label="Search Product">
 	</div>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		
 		$(document).ready(function(){
 		$('#search').on('keyup',function(){
 			var search = $("#search").val();
 			var searchBy = $("#searchBy").val();
-
 			$.ajax({
-				url: '/accountingSellsHome/product/search',
-				method: 'post',
+				url: "{{ route('accountingSellsHome.product.search') }}",
+				method: 'get',
 				datatype : 'json',
 				data : {'search':search,
 						'searchBy':searchBy},
 				success:function(response){
-					if(response.product !== 'error'){
 						var tableBody="<tr><td>#</td><td>Product Code</td><td>Product Number</td><td>Product Vendor</td><td>Quantity In Stock</td><td>Buy Price</td><td>Buy Price</td><td>Product Description</td><td>Action</td></tr>";
-						response.product.forEach(element => {
+						response.forEach(element => {
 							var tableRow="";
 							tableRow+="<td>"+element.id+"</td>";
 							tableRow+="<td>"+element.productCode+"</td>";
@@ -49,13 +47,10 @@
 							tableRow+="<td>"+element.buyPrice+"</td>";
                             tableRow+="<td>"+element.sellPrice+"</td>";
 							tableRow+="<td>"+element.productDescription+"</td>";
-							tableRow+="<td><a href='../accountingSellsHome/product/edit/"+element.id+"'>Edit</a> | <a href='../accountingSellsHome/product/delete/"+element.id+"'>Delete</a></td>";
+							tableRow+="<td><a href='../accountingSellsHome/Product/edit/"+element.id+"'>Edit</a> | <a href='../accountingSellsHome/Product/delete/"+element.id+"'>Delete</a></td>";
 							tableBody=tableBody+"<tr>"+tableRow+"</tr>";
 						});
 						$('#table').html(tableBody);
-					}else{
-
-					}
 				},
 				error:function(response){
 					alert('server error');
@@ -63,7 +58,7 @@
 			});
 		});
 	});
-	</script> -->
+	</script>
     <div class="card-box mb-30">
         <div class="pb-20">
 		<table class="table hover multiple-select-row data-table-export nowrap" id="table">
@@ -76,7 +71,6 @@
                 <th>Buy Price</td>
                 <th>Sell Price</td>
                 <th>Product Description</td>
-                <!-- <th>Product Image</td> -->
                 <th>Action</td>
 			</tr>
 	
@@ -90,7 +84,6 @@
 				<td>{{$productList[$i]['buyPrice']}}</td>
 				<td>{{$productList[$i]['sellPrice']}}</td>
                 <td>{{$productList[$i]['productDescription']}}</td>
-                <!-- <td><%= productList[i].productImage %></td> -->
 				<td>
                     <a href="{{ route('accountingSellsHome.product.edit', $productList[$i]['id']) }}">Edit</a><br>
                     <a href="{{ route('accountingSellsHome.product.delete', $productList[$i]['id']) }}">Delete</a>
