@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
 
+
 use App\Http\Controllers\AdminloginController;
+
 
 
 
@@ -21,6 +23,10 @@ use App\Http\Controllers\AdminloginController;
 Route::get('/', function () {
 	return view('landing.landing');
 });
+
+Route::get('/login','loginController@index');
+ Route::post('/login','loginController@verify');
+
 // Route::get('/login', function () {
 //     return view('login.index');
 // });
@@ -38,14 +44,17 @@ Route::get('/login/admin', 'AdminloginController@index')->name('login.index.admi
 Route::post('/login/admin', 'AdminloginController@verify')->name('login.verify.admin');
 Route::get('/logout/admin', 'AdminloginController@logout')->name('logout.admin');
 
+
 Route::get('/login/linkedin', [AdminloginController::class, 'redirectToLinkedin'])->name('login.linkedin');
 Route::get('/login/callback/linkedin', [AdminloginController::class, 'handleLinkedinCallback']);
+
 
 
 // Route::get('/email', function () {
 // 	Mail::to('rayhanmahi999@gmail.com')->send(new PaymentConfirmationMail());
 // 	return new PaymentConfirmationMail();
 // });
+
 
 
 //Accounting & Sells 
@@ -126,8 +135,10 @@ Route::group(['middleware' => ['superadmin_sess']], function () {
 	Route::get('/superAdmin_home/report', 'superAdmin_homeController@report_show')->name('superAdmin.report');
 	Route::get('/superAdmin_home/report/download/{name}', 'AdminReportController@download')->name('report.download');
 
+
 	//coupon
 	Route::get('/superAdmin_home/coupon', 'superAdmin_homeController@coupon')->name('superAdmin.coupon');
+
 });
 
 

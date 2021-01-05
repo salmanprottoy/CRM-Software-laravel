@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\superAdmin;
 use App\Models\subscriber;
 use App\Models\Order;
+
 use GuzzleHttp\Client;
 
 
@@ -64,6 +65,9 @@ class superAdmin_homeController extends Controller
         return view('superAdmin.package_list')->with('package', $data_decode);
     }
 
+
+
+
     public function report_show()
     {
         $admin_list = superAdmin::where('type', 'Admin')->get();
@@ -107,5 +111,6 @@ class superAdmin_homeController extends Controller
             // return view('admin.adminlist')->with('admins', $admins);
             echo "Not get";
         }
+
     }
 }
