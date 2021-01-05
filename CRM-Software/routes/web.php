@@ -75,7 +75,6 @@ Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController
 Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
 //pdf
 Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF')->name('accountingSellsHome.getPdf');
-=======
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
