@@ -24,7 +24,9 @@ class bankInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'accountName'  => 'required'
+            'accountName'  => 'required',
+            'accountNumber' => 'required',
+            'bankName' => 'required'
         ];
     }
 }
