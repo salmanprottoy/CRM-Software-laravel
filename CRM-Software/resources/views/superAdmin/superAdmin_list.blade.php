@@ -151,10 +151,10 @@
                                 class="form-control-file form-control height-auto" name="image">
                             --}}
                             <img src='
-                                    {{ asset('assets/uploads/user.jpg') }}
-                                    ' onclick="triggerClick()" id="profileDisplay" class="center"
+                                        {{ asset('assets/uploads/user.jpg') }}
+                                        ' onclick="triggerClick()" id="profileDisplay" class="center"
                                 value="{{ old('image') }}" style="width: 15rem; height: 15rem;display: block;border-radius:50%; margin-left: auto;
-                                    margin-right: auto;"><br>
+                                        margin-right: auto;"><br>
                             <input type="file" class="form-control-file form-control height-auto" name="image"
                                 accept=" image/*" value="{{ old('image') }}" onchange="displayImage(this)" id="file"
                                 style="display:none;">

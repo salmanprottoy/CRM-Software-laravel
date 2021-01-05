@@ -10,3 +10,4 @@ class adminUser extends Model
     protected $table = 'adminuser';
     protected $primaryKey = "id";
     public $timestamps = false;
+}
