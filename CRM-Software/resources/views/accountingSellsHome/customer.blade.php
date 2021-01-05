@@ -42,7 +42,7 @@
 							tableRow+="<td>"+element.customerEmail+"</td>";
 							tableRow+="<td>"+element.customerStatus+"</td>";
 							tableRow+="<td>"+element.customerGender+"</td>";
-							tableRow+="<td><a href='../accountingSellsHome/customer/edit/"+element.id+"'>Edit</a> | <a href='../accountingSellsHome/customer/delete/"+element.id+"'>Delete</a></td>";
+							tableRow+="<td><a href='../accountingSellsHome/Customer/edit/"+element.id+"'>Edit</a> | <a href='../accountingSellsHome/Customer/delete/"+element.id+"'>Delete</a></td>";
 							tableBody=tableBody+"<tr>"+tableRow+"</tr>";
 						});
 					 $('#table').html(tableBody);

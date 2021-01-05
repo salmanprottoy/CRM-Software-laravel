@@ -11,6 +11,7 @@ use App\Models\salary;
 use App\Http\Requests\bankInfoRequest;
 use App\Http\Requests\customerRequest;
 use App\Http\Requests\productRequest;
+use GuzzleHttp\Client;
 use PDF;
 
 class accountingSellsController extends Controller
@@ -177,8 +178,16 @@ class accountingSellsController extends Controller
     //bankInfo
     public function showBankInfo()
     {
-        $bankInfo = bank::all();
-        return view('accountingSellsHome.bankInfo')->with('bankInfo', $bankInfo);
+        $client = new Client();
+        $response = $client->request('GET', 'http://localhost:3000/home/getBankInfo');
+        if ($response->getStatusCode() == 200) {
+            $bankInfo = json_decode($response->getBody(), true);
+            return view('accountingSellsHome.bankInfo')->with('bankInfo', $bankInfo);
+        } else {
+            echo "Not get";
+        }
+        /* $bankInfo = bank::all();
+        return view('accountingSellsHome.bankInfo')->with('bankInfo', $bankInfo); */
     }
     public function editBankInfo($id)
     {
