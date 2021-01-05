@@ -79,8 +79,8 @@ Route::get('/accountingSellsHome/BankInfo/search', 'accountingSellsController@se
 Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
 Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
 //pdf
-Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF')->name('accountingSellsHome.getPdf');
-=======
+Route::get('/accountingSellsHome/Report/generate-pdf', 'accountingSellsController@generatePDF')->name('accountingSellsHome.getPdf');
+
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
@@ -161,4 +161,3 @@ Route::group(['middleware' => ['checksession']], function () {
 	Route::resource('/marketuser', 'MarketUserController');
 });
  //marketing
-
