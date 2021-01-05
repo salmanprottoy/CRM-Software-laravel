@@ -1,14 +1,10 @@
 @extends('layout')
 @section('content')
-@include('partials.navbar')
+@include('partials.accountingSells_navbar')
 @include('partials.accountingSells_sidebar')
 
 <div class="main-container">
 	<h1>Accounting Sells Report</h1>
-    <br>
-    <div>
-        <a class="btn btn-outline-primary" href="{{ route('accountingSellsHome.getPdf') }}" role="button">Download Report</a>
-	</div>
     <br>
     <h5>Customer Information</h5>
 	<p>
@@ -21,6 +17,13 @@
         Female Customer: {{$femaleCustomer}}
         <br>
     </p>
+    <br>
+    <div>
+        <a class="btn btn-outline-primary" href="{{ route('accountingSellsHome.getPdf2') }}" role="button">Download Customer Report</a>
+	</div>
+    <br>
+
+    <hr>
 
     <h5>Product Information</h5>
     <p>
@@ -28,7 +31,11 @@
         <br>
         Total product in Stock: {{$totalProductInStock}}
         <br>
-
     </p>
+    <br>
+    <div>
+        <a class="btn btn-outline-primary" href="{{ route('accountingSellsHome.getPdf1') }}" role="button">Download Product Report</a>
+	</div>
+    <br>
 </div>
 @endsection
