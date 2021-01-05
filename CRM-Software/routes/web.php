@@ -50,6 +50,7 @@ Route::get('/logout/admin', 'AdminloginController@logout')->name('logout.admin')
 Route::group(['middleware' => ['checksession']], function () {
 	Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
 	Route::get('/accountingSellsHome/Profile', 'accountingSellsController@showProfile')->name('accountingSellsHome.profile');
+	Route::post('/accountingSellsHome/Profile', 'accountingSellsController@updateProfile');
 	Route::get('/accountingSellsHome/Calendar', 'accountingSellsController@showCalendar')->name('accountingSellsHome.calendar');
 	Route::get('/accountingSellsHome/Report', 'accountingSellsController@showReport')->name('accountingSellsHome.report');
 	//customer

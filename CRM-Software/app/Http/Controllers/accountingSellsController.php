@@ -11,6 +11,7 @@ use App\Models\salary;
 use App\Http\Requests\bankInfoRequest;
 use App\Http\Requests\customerRequest;
 use App\Http\Requests\productRequest;
+use App\Http\Requests\infoCheck;
 use GuzzleHttp\Client;
 use PDF;
 
@@ -38,6 +39,21 @@ class accountingSellsController extends Controller
             'designation'=> $req->session()->get('designation')
         ];
         return view('accountingSellsHome.profile', $user);
+    }
+    public function updateProfile(Request $req,infoCheck $info)
+    {
+        $affected = DB::table('user')
+              ->where('id', $req->session()->get('id'))
+              ->update(['username' => $info->username,
+                        'designation'=> $info->designation,
+                        'email'=> $info->email,
+                        'contactNumber'=> $info->phone
+                      ]);
+              $req->session()->put('username',$info->username);
+              $req->session()->put('designation',$info->designation);
+              $req->session()->put('email',$info->email);
+              $req->session()->put('phone',$info->phone);
+        return redirect()->route('accountingSellsHome.profile');
     }
     //customer
     public function showCustomer()
