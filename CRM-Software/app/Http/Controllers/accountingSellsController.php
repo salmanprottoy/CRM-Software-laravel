@@ -28,6 +28,17 @@ class accountingSellsController extends Controller
         return view('accountingSellsHome.calendar');
     }
 
+    //profile
+    public function showProfile(Request $req)
+    {
+        $user = [
+            'username'=> $req->session()->get('username'),
+            'phone'=> $req->session()->get('phone'),
+            'email'=> $req->session()->get('email'),
+            'designation'=> $req->session()->get('designation')
+        ];
+        return view('accountingSellsHome.profile', $user);
+    }
     //customer
     public function showCustomer()
     {
