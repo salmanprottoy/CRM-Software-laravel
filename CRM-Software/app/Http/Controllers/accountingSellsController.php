@@ -11,6 +11,7 @@ use App\Models\salary;
 use App\Http\Requests\bankInfoRequest;
 use App\Http\Requests\customerRequest;
 use App\Http\Requests\productRequest;
+use PDF;
 
 class accountingSellsController extends Controller
 {
@@ -31,6 +32,21 @@ class accountingSellsController extends Controller
     {
         $customerList = customer::all();
         return view('accountingSellsHome.customer')->with('customerList', $customerList);
+    }
+    public function searchCustomer(Request $req)
+    {
+        if ($req->ajax()) 
+        {
+            
+            $search = $req->get('search');
+            $searchBy = $req->get('searchBy');
+            $customerList = customer::where($req->searchBy, 'like', '%'.$req->search.'%')->get();
+            error_log($customerList);
+            return response()->json($customerList);
+        } 
+        else {
+            return Redirect()->Back();
+        }
     }
     public function createCustomer()
     {
@@ -189,5 +205,13 @@ class accountingSellsController extends Controller
     {
         $salaryList = salary::all();
         return view('accountingSellsHome.salary')->with('salaryList', $salaryList);
+    }
+    //Pdf
+    public function generatePDF()
+    {
+        $data = ['title' => 'Accounting & Sells Report'];
+        $pdf = PDF::loadView('myPDF', $data);
+  
+        return $pdf->download('A&S_report.pdf');
     }
 }

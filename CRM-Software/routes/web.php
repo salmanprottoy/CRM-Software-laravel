@@ -46,6 +46,7 @@ Route::get('/accountingSellsHome/Calendar', 'accountingSellsController@showCalen
 Route::get('/accountingSellsHome/Report', 'accountingSellsController@showReport')->name('accountingSellsHome.report');
 //customer
 Route::get('/accountingSellsHome/Customer', 'accountingSellsController@showCustomer')->name('accountingSellsHome.customer');
+Route::get('/accountingSellsHome/Customer/search', 'accountingSellsController@searchCustomer')->name('accountingSellsHome.customer.search');
 Route::get('/accountingSellsHome/Customer/create', 'accountingSellsController@createCustomer')->name('accountingSellsHome.customer.create');;
 Route::post('/accountingSellsHome/Customer/create', 'accountingSellsController@creatingCustomer')->name('accountingSellsHome.customer.creating');;
 Route::get('/accountingSellsHome/Customer/edit/{id}', 'accountingSellsController@editCustomer')->name('accountingSellsHome.customer.edit');
@@ -54,6 +55,7 @@ Route::get('/accountingSellsHome/Customer/delete/{id}', 'accountingSellsControll
 Route::post('/accountingSellsHome/Customer/delete/{id}', 'accountingSellsController@deletingCustomer')->name('accountingSellsHome.customer.update');
 //product
 Route::get('/accountingSellsHome/Product', 'accountingSellsController@showProduct')->name('accountingSellsHome.product');
+Route::get('/accountingSellsHome/Product/search', 'accountingSellsController@searchProduct')->name('accountingSellsHome.product.search');
 Route::get('/accountingSellsHome/Product/create', 'accountingSellsController@createProduct')->name('accountingSellsHome.product.create');;
 Route::post('/accountingSellsHome/Product/create', 'accountingSellsController@creatingProduct')->name('accountingSellsHome.product.creating');;
 Route::get('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@editProduct')->name('accountingSellsHome.product.edit');
@@ -64,3 +66,5 @@ Route::post('/accountingSellsHome/Product/delete/{id}', 'accountingSellsControll
 Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
 Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
 Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
+//pdf
+Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF');

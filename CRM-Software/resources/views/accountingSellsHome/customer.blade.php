@@ -19,23 +19,21 @@
 		</select>
         <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="Search Customer" aria-label="Search Customer">
 	</div>
-	<!-- <script type="text/javascript">
-		
+	<script type="text/javascript">
 		$(document).ready(function(){
 		$('#search').on('keyup',function(){
 			var search = $("#search").val();
 			var searchBy = $("#searchBy").val();
-
 			$.ajax({
-				url: '/accountingSellsHome/customer/search',
-				method: 'post',
+				url: "{{ route('accountingSellsHome.customer.search') }}",
+				method: 'get',
 				datatype : 'json',
 				data : {'search':search,
 						'searchBy':searchBy},
-				success:function(response){
-					if(response.customer !== 'error'){
+				success: function(response){
+					//alert(response);
 						var tableBody="<tr><td>#</td><td>Name</td><td>Contact Number</td><td>Address</td><td>Email</td><td>Status</td><td>Gender</td><td>Action</td></tr>";
-						response.customer.forEach(element => {
+						response.forEach(element => {
 							var tableRow="";
 							tableRow+="<td>"+element.id+"</td>";
 							tableRow+="<td>"+element.customerName+"</td>";
@@ -47,10 +45,7 @@
 							tableRow+="<td><a href='../accountingSellsHome/customer/edit/"+element.id+"'>Edit</a> | <a href='../accountingSellsHome/customer/delete/"+element.id+"'>Delete</a></td>";
 							tableBody=tableBody+"<tr>"+tableRow+"</tr>";
 						});
-						$('#table').html(tableBody);
-					}else{
-
-					}
+					 $('#table').html(tableBody);
 				},
 				error:function(response){
 					alert('server error');
@@ -58,17 +53,17 @@
 			});
 		});
 	});
-	</script> -->
+	</script>
 	<hr>
 	<!-- <div><a class="btn btn-success" href="/accountingSellsHome/customer/csv" role="button">To CSV</a>
 	</div>
 	<hr>
 	<div><a class="btn btn-success" href="/accountingSellsHome/pdf" role="button" id="pdf">To PDF</a>
-	</div>
-	<hr> -->
+	</div> -->
+	<hr>
 	<div class="card-box mb-30">
 		<div class="pb-20">
-		<table class="table hover data-table  nowrap" id="table" name="table">
+		<table class="table hover data-table  nowrap" id="table">
 			<tr>
 				<th class="table-plus datatable-nosort">#</td>
 				<th>Name</td>
