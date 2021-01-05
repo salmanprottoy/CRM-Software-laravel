@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
 
+use App\Http\Controllers\AdminloginController;
+
 
 
 /*
@@ -35,6 +37,9 @@ Route::get('/register/manager/uname_search', 'RegisterController@uname_search')-
 Route::get('/login/admin', 'AdminloginController@index')->name('login.index.admin');
 Route::post('/login/admin', 'AdminloginController@verify')->name('login.verify.admin');
 Route::get('/logout/admin', 'AdminloginController@logout')->name('logout.admin');
+
+Route::get('/login/linkedin', [AdminloginController::class, 'redirectToLinkedin'])->name('login.linkedin');
+Route::get('/login/callback/linkedin', [AdminloginController::class, 'handleLinkedinCallback']);
 
 
 // Route::get('/email', function () {
