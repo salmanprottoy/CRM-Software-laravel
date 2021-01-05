@@ -16,7 +16,7 @@
 		</select>
         <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="Search Salary Info" aria-label="Search Salary Info">
 	</div>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		
 		$(document).ready(function(){
 		$('#search').on('keyup',function(){
@@ -24,15 +24,14 @@
 			var searchBy = $("#searchBy").val();
 
 			$.ajax({
-				url: '/accountingSellsHome/salary/search',
-				method: 'post',
+				url: "{{ route('accountingSellsHome.salary.search') }}",
+				method: 'get',
 				datatype : 'json',
 				data : {'search':search,
 						'searchBy':searchBy},
 				success:function(response){
-					if(response.salary !== 'error'){
 						var tableBody="<tr><td>#</td><td>Employee ID</td><td>Salary Grade</td><td>Min Salary</td><td>Max Salary</td>";
-						response.salary.forEach(element => {
+						response.forEach(element => {
 							var tableRow="";
 							tableRow+="<td>"+element.id+"</td>";
 							tableRow+="<td>"+element.employeeId+"</td>";
@@ -42,9 +41,6 @@
 							tableBody=tableBody+"<tr>"+tableRow+"</tr>";
 						});
 						$('#table').html(tableBody);
-					}else{
-                            condole.log("Error!");
-					}
 				},
 				error:function(response){
 					alert('server error');
@@ -52,7 +48,7 @@
 			});
         });
     });
-    </script> -->
+    </script>
     <div class="card-box mb-30">
 		<div class="pb-20">
         <table class="table hover multiple-select-row data-table-export nowrap" id="table">

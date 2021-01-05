@@ -245,6 +245,21 @@ class accountingSellsController extends Controller
         $salaryList = salary::all();
         return view('accountingSellsHome.salary')->with('salaryList', $salaryList);
     }
+    public function searchSalary(Request $req)
+    {
+        if ($req->ajax()) 
+        {
+            
+            $search = $req->get('search');
+            $searchBy = $req->get('searchBy');
+            $salaryInfo = salary::where($req->searchBy, 'like', '%'.$req->search.'%')->get();
+            error_log($salaryInfo);
+            return response()->json($salaryInfo);
+        } 
+        else {
+            return Redirect()->Back();
+        }
+    }
     //Pdf
     public function generatePDF()
     {

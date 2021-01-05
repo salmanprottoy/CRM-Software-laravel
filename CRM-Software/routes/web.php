@@ -41,7 +41,6 @@ Route::post('/superAdmin_home/package_list/edit', 'superAdmin_homeController@upd
 
 //Accounting & Sells 
 Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
-Route::get('/accountingSellsHome/Salary', 'accountingSellsController@showSalary')->name('accountingSellsHome.salary');
 Route::get('/accountingSellsHome/Calendar', 'accountingSellsController@showCalendar')->name('accountingSellsHome.calendar');
 Route::get('/accountingSellsHome/Report', 'accountingSellsController@showReport')->name('accountingSellsHome.report');
 //customer
@@ -62,6 +61,9 @@ Route::get('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@
 Route::post('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@updateProduct')->name('accountingSellsHome.product.update');
 Route::get('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deleteProduct')->name('accountingSellsHome.product.delete');
 Route::post('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deletingProduct')->name('accountingSellsHome.product.update');
+//Salary
+Route::get('/accountingSellsHome/Salary', 'accountingSellsController@showSalary')->name('accountingSellsHome.salary');
+Route::get('/accountingSellsHome/Salary/search', 'accountingSellsController@searchSalary')->name('accountingSellsHome.salary.search');
 //bankInfo
 Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
 Route::get('/accountingSellsHome/BankInfo/search', 'accountingSellsController@searchBankInfo')->name('accountingSellsHome.bankInfo.search');
