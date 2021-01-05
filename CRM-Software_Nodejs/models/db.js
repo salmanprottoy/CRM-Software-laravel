@@ -37,7 +37,10 @@ module.exports = {
 			} else {
 
 				connection.query(sql, function (error, results) {
-					callback(results);
+
+					console.log(results);
+;					callback(results);
+
 				});
 
 				connection.end(function (err) {
