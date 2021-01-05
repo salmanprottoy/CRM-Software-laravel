@@ -80,7 +80,8 @@ Route::group(['middleware' => ['checksession']], function () {
 	Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
 	Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
 	//pdf
-	Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF')->name('accountingSellsHome.getPdf');
+	Route::get('/accountingSellsHome/Report/generate-pdf1','accountingSellsController@generatePDF1')->name('accountingSellsHome.getPdf1');
+	Route::get('/accountingSellsHome/Report/generate-pdf2','accountingSellsController@generatePDF2')->name('accountingSellsHome.getPdf2');
 });
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);

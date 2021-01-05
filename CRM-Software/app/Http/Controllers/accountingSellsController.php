@@ -304,11 +304,23 @@ class accountingSellsController extends Controller
         return view('accountingSellsHome.report')->with('totalCustomer', $countCustomer)->with('totalProduct', $countProduct)->with('activeCustomer', $countActiveCustomer)->with('maleCustomer', $countMaleCustomer)->with('femaleCustomer', $countFemaleCustomer)->with('totalProductInStock', $totalProductInStock);
     }
     //Pdf
-    public function generatePDF()
+    public function generatePDF1()
     {
         $totalProduct = product::all();
         $countProduct = $totalProduct->count();
         $totalProductInStock = product::get()->sum('quantityInStock');
+
+        $data = [
+                    'title'                 => 'Accounting & Sells Report',
+                    'totalProduct'          => $countProduct,
+                    'totalProductInStock'   => $totalProductInStock
+                ];
+        $pdf = PDF::loadView('accountingSellsHome/productReportPdf', $data);
+  
+        return $pdf->download('AccountingSells_report_Product.pdf');
+    }
+    public function generatePDF2()
+    {
         $totalCustomer = customer::all();
         $countCustomer = $totalCustomer->count();
         $activeCustomer = customer::where('customerStatus', 'active');
@@ -321,14 +333,12 @@ class accountingSellsController extends Controller
         $data = [
                     'title'                 => 'Accounting & Sells Report',
                     'totalCustomer'         => $countCustomer,
-                    'totalProduct'          => $countProduct,
                     'activeCustomer'        => $countActiveCustomer,
                     'maleCustomer'          => $countMaleCustomer,
-                    'femaleCustomer'        => $countFemaleCustomer,
-                    'totalProductInStock'   => $totalProductInStock
+                    'femaleCustomer'        => $countFemaleCustomer
                 ];
-        $pdf = PDF::loadView('accountingSellsHome/pdfReport', $data);
+        $pdf = PDF::loadView('accountingSellsHome/customerReportPdf', $data);
   
-        return $pdf->download('AccountingSells_report.pdf');
+        return $pdf->download('AccountingSells_report_Customer.pdf');
     }
 }
