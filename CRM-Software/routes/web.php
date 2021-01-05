@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
 
 
+use App\Http\Controllers\AdminloginController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +23,10 @@ use App\Http\Controllers\SslCommerzPaymentController;
 Route::get('/', function () {
 	return view('landing.landing');
 });
+
 Route::get('/login','loginController@index');
  Route::post('/login','loginController@verify');
+
 // Route::get('/login', function () {
 //     return view('login.index');
 // });
@@ -39,11 +45,50 @@ Route::post('/login/admin', 'AdminloginController@verify')->name('login.verify.a
 Route::get('/logout/admin', 'AdminloginController@logout')->name('logout.admin');
 
 
+Route::get('/login/linkedin', [AdminloginController::class, 'redirectToLinkedin'])->name('login.linkedin');
+Route::get('/login/callback/linkedin', [AdminloginController::class, 'handleLinkedinCallback']);
+
+
+
 // Route::get('/email', function () {
 // 	Mail::to('rayhanmahi999@gmail.com')->send(new PaymentConfirmationMail());
 // 	return new PaymentConfirmationMail();
 // });
 
+
+
+//Accounting & Sells 
+Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
+Route::get('/accountingSellsHome/Calendar', 'accountingSellsController@showCalendar')->name('accountingSellsHome.calendar');
+Route::get('/accountingSellsHome/Report', 'accountingSellsController@showReport')->name('accountingSellsHome.report');
+//customer
+Route::get('/accountingSellsHome/Customer', 'accountingSellsController@showCustomer')->name('accountingSellsHome.customer');
+Route::get('/accountingSellsHome/Customer/search', 'accountingSellsController@searchCustomer')->name('accountingSellsHome.customer.search');
+Route::get('/accountingSellsHome/Customer/create', 'accountingSellsController@createCustomer')->name('accountingSellsHome.customer.create');;
+Route::post('/accountingSellsHome/Customer/create', 'accountingSellsController@creatingCustomer')->name('accountingSellsHome.customer.creating');;
+Route::get('/accountingSellsHome/Customer/edit/{id}', 'accountingSellsController@editCustomer')->name('accountingSellsHome.customer.edit');
+Route::post('/accountingSellsHome/Customer/edit/{id}', 'accountingSellsController@updateCustomer')->name('accountingSellsHome.customer.update');
+Route::get('/accountingSellsHome/Customer/delete/{id}', 'accountingSellsController@deleteCustomer')->name('accountingSellsHome.customer.delete');
+Route::post('/accountingSellsHome/Customer/delete/{id}', 'accountingSellsController@deletingCustomer')->name('accountingSellsHome.customer.update');
+//product
+Route::get('/accountingSellsHome/Product', 'accountingSellsController@showProduct')->name('accountingSellsHome.product');
+Route::get('/accountingSellsHome/Product/search', 'accountingSellsController@searchProduct')->name('accountingSellsHome.product.search');
+Route::get('/accountingSellsHome/Product/create', 'accountingSellsController@createProduct')->name('accountingSellsHome.product.create');;
+Route::post('/accountingSellsHome/Product/create', 'accountingSellsController@creatingProduct')->name('accountingSellsHome.product.creating');;
+Route::get('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@editProduct')->name('accountingSellsHome.product.edit');
+Route::post('/accountingSellsHome/Product/edit/{id}', 'accountingSellsController@updateProduct')->name('accountingSellsHome.product.update');
+Route::get('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deleteProduct')->name('accountingSellsHome.product.delete');
+Route::post('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deletingProduct')->name('accountingSellsHome.product.update');
+//Salary
+Route::get('/accountingSellsHome/Salary', 'accountingSellsController@showSalary')->name('accountingSellsHome.salary');
+Route::get('/accountingSellsHome/Salary/search', 'accountingSellsController@searchSalary')->name('accountingSellsHome.salary.search');
+//bankInfo
+Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
+Route::get('/accountingSellsHome/BankInfo/search', 'accountingSellsController@searchBankInfo')->name('accountingSellsHome.bankInfo.search');
+Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
+Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
+//pdf
+Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF')->name('accountingSellsHome.getPdf');
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
@@ -89,6 +134,11 @@ Route::group(['middleware' => ['superadmin_sess']], function () {
 	//Report
 	Route::get('/superAdmin_home/report', 'superAdmin_homeController@report_show')->name('superAdmin.report');
 	Route::get('/superAdmin_home/report/download/{name}', 'AdminReportController@download')->name('report.download');
+
+
+	//coupon
+	Route::get('/superAdmin_home/coupon', 'superAdmin_homeController@coupon')->name('superAdmin.coupon');
+
 });
 
 
@@ -121,3 +171,4 @@ Route::group(['middleware' => ['checksession']], function () {
 	Route::resource('/marketuser', 'MarketUserController');
 });
  //marketing
+

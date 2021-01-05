@@ -67,6 +67,9 @@
                                     <div class="input-group mb-0">
                                         <a class="btn btn-outline-primary btn-lg btn-block" href="register.html">Register To
                                             Create Account</a>
+
+                                        <a href="{{route('login.linkedin')}}" name="loginwithLinkedin" class="btn btn-primary btn-block">Login With Linkedin</a>
+
                                     </div>
                                 </div>
                             </div>

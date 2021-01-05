@@ -63,6 +63,13 @@
                 </li>
 
                 <li>
+
+                    <a href="{{ route('superAdmin.coupon') }}" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-calendar1"></span><span class="mtext">Coupon Management</span>
+                    </a>
+                </li>
+                <li>
+
                     <a href="{{ route('superAdmin.report') }}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-calendar1"></span><span class="mtext">Financial Status</span>
                     </a>
