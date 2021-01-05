@@ -10,6 +10,8 @@ use App\Http\Requests\createinfocheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 use PDF;
 class MarketUserController extends Controller
 {
@@ -292,6 +294,18 @@ class MarketUserController extends Controller
       return $data;
       
      }
+    }
+    public function duplicate(Request $req)
+    {
+      
+        $client = new Client();
+        // $temp = $req->get('user_email');
+        // $req->session()->put('checkemail', $temp);
+        $response = $client->request('POST', 'http://localhost:3000/clients/search',['form_params' => [
+        'user_email' => $req->get('user_email')
+    ]]);
+        return $response->getBody();
+      
     }
     public function loadpdf(Request $req,$table)
     {
