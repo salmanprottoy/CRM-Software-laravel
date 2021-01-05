@@ -17,6 +17,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 </head>
 <body>
+	<div>Leads in percentage: {{$count}}%</div>
 	<table>
 				    <thead>
 				      <tr>
@@ -49,5 +50,6 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 						@endfor
 				    </tbody>
 				  </table>
+
 </body>
 </html>

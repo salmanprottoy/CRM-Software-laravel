@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User List Page</title>
+</head>
+<body>
+	<h3>Userlist</h3>
+
+	<a href="/home">Back</a> |
+	<a href="/logout">logout</a>
+	<br>
+
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td>USERNAME</td>
+			<td>email</td>
+			<td>phone</td>
+			<td>status</td>
+			<td>gender</td>
+			<td>address</td>
+			<td>vote</td>
+			<td>previd</td>
+			<td>newid</td>
+		</tr>
+
+		<% for(var i=0; i< userlist.length; i++ ){ %>
+		<tr>
+			<td><%= userlist[i].id %></td>
+			<td><%= userlist[i].name %></td>
+			<td><%= userlist[i].email %></td>
+			<td><%= userlist[i].phone %></td>
+			<td><%= userlist[i].status %></td>
+			<td><%= userlist[i].gender %></td>
+			<td><%= userlist[i].address%></td>
+			<td><%= userlist[i].vote %></td>
+			<td><%= userlist[i].previd %></td>
+			<td><%= userlist[i].newid%></td>
+			<td>
+				<a href="/user/edit/<%=userlist[i].id%>">Approve</a> | 
+				<a href="/user/delete/<%=userlist[i].id%>">Reject</a>  
+			</td>
+		</tr>
+		<% } %>
+	</table>
+</body>
+</html>

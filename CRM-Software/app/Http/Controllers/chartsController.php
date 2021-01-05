@@ -11,7 +11,10 @@ class chartsController extends Controller
 {
     public function index($type,Request $req)
     {
-    	if($type=='bars') return view('marketcharts.charts')->with('username', $req->session()->get('username'));
+    	if($type=='bars') 
+    	{
+    		return view('marketcharts.charts')->with('username', $req->session()->get('username'));
+    	}
     	else
     	{
     		$array= $this->getvalues();
