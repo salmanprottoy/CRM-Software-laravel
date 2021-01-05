@@ -99,7 +99,7 @@ class AdminController extends Controller
 
         $image = $req->file('image');
         if ($image) {
-            unlink($oldimage);
+            //unlink($oldimage);
             $image_name = date('dmy_H_s_i');
             $image_ext = strtolower($image->getClientOriginalExtension());
             $fileextstored = array('png', 'jpg', 'jpeg');

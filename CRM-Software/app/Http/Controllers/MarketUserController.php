@@ -84,14 +84,28 @@ class MarketUserController extends Controller
     {
         if($table=="leads")
         {
-            $std = marketUser::where('id',$id)->update([
-
+           $client = new Client();
+        // $temp = $req->get('user_email');
+        // $req->session()->put('checkemail', $temp);
+        $response = $client->request('POST', 'http://localhost:3000/update/store',['form_params' => [
+                'id' => $id,
                 'name'=> $req->username,
                 'email'=>$req->email,
                 'gender'=>$req->gender,
                 'status'=>$req->status,
-                'phone'=>$req->phone
-            ]);
+                'phone'=>$req->phone,
+                'address'=>$req->address
+        ]]);
+        $response->getBody();
+            // $std = marketUser::where('id',$id)->update([
+
+            //     'name'=> $req->username,
+            //     'email'=>$req->email,
+            //     'gender'=>$req->gender,
+            //     'status'=>$req->status,
+            //     'phone'=>$req->phone,
+            //     'address'=>$req->address
+            // ]);
             
         }
         else
@@ -312,16 +326,25 @@ class MarketUserController extends Controller
         if($table=='leads')
         {
             $userlist=marketUser::all();
+            $count1=count(marketCustomer::all());
+            $count2=count($userlist);
+            $count1+=$count2;
+            $count= floor(($count2*100)/$count1);
+
+
             //return view('marketpdf.leadspdf')->with('userlist', $userlist);
-            $pdf = PDF::loadView('marketpdf.leadspdf',compact('userlist'));
-            return $pdf->download('itsolutionstuff.pdf');
+            $pdf = PDF::loadView('marketpdf.leadspdf',compact(['userlist','count']));
+            return $pdf->download('leads.pdf');
         }
         else
         {
              $userlist=marketCustomer::all();
-            
-            $pdf = PDF::loadView('marketpdf.customerpdf',compact('userlist'));
-            return $pdf->download('itsolutionstuff.pdf');
+            $count1=count(marketUser::all());
+            $count2=count($userlist);
+            $count1+=$count2;
+            $count= floor(($count2*100)/$count1);
+            $pdf = PDF::loadView('marketpdf.customerpdf',compact(['userlist','count']));
+            return $pdf->download('customer.pdf');
         }
     }
     /**

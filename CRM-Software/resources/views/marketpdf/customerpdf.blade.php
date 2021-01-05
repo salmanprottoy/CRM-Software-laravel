@@ -16,6 +16,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
 </head>
 <body>
+	<div>Customers in percentage: {{$count}}%</div>
 	<table class="table table-striped">
 				    <thead>
 				      <tr>

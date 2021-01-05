@@ -171,17 +171,7 @@
                     </div>
 
 
-                    <div class="col-md-12 col-sm-12 mb-30">
-
-                        <div class="pd-20 card-box height-100-p">
-                            <div class="btn-list" style="float: right;">
-
-                                <button type="submit" class="btn btn-outline-success">Submit</button>
-
-
-                            </div>
-                        </div>
-                    </div>
+                    <input type="submit" class="btn btn-outline-success btn-lg btn-block" id=btn_insert name="infoUpdate" value="Update">
                     @endfor
 
                 </div>
