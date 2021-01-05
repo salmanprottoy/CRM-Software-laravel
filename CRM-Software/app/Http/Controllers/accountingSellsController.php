@@ -260,12 +260,48 @@ class accountingSellsController extends Controller
             return Redirect()->Back();
         }
     }
+    public function showReport()
+    {
+        $totalProduct = product::all();
+        $countProduct = $totalProduct->count();
+        $totalProductInStock = product::get()->sum('quantityInStock');
+        $totalCustomer = customer::all();
+        $countCustomer = $totalCustomer->count();
+        $activeCustomer = customer::where('customerStatus', 'active');
+        $countActiveCustomer = $activeCustomer->count();
+        $maleCustomer = customer::where('customerGender', 'male');
+        $countMaleCustomer = $maleCustomer->count();
+        $femaleCustomer = customer::where('customerGender', 'female');
+        $countFemaleCustomer = $femaleCustomer->count();
+
+        return view('accountingSellsHome.report')->with('totalCustomer', $countCustomer)->with('totalProduct', $countProduct)->with('activeCustomer', $countActiveCustomer)->with('maleCustomer', $countMaleCustomer)->with('femaleCustomer', $countFemaleCustomer)->with('totalProductInStock', $totalProductInStock);
+    }
     //Pdf
     public function generatePDF()
     {
-        $data = ['title' => 'Accounting & Sells Report'];
-        $pdf = PDF::loadView('myPDF', $data);
+        $totalProduct = product::all();
+        $countProduct = $totalProduct->count();
+        $totalProductInStock = product::get()->sum('quantityInStock');
+        $totalCustomer = customer::all();
+        $countCustomer = $totalCustomer->count();
+        $activeCustomer = customer::where('customerStatus', 'active');
+        $countActiveCustomer = $activeCustomer->count();
+        $maleCustomer = customer::where('customerGender', 'male');
+        $countMaleCustomer = $maleCustomer->count();
+        $femaleCustomer = customer::where('customerGender', 'female');
+        $countFemaleCustomer = $femaleCustomer->count();
+
+        $data = [
+                    'title'                 => 'Accounting & Sells Report',
+                    'totalCustomer'         => $countCustomer,
+                    'totalProduct'          => $countProduct,
+                    'activeCustomer'        => $countActiveCustomer,
+                    'maleCustomer'          => $countMaleCustomer,
+                    'femaleCustomer'        => $countFemaleCustomer,
+                    'totalProductInStock'   => $totalProductInStock
+                ];
+        $pdf = PDF::loadView('accountingSellsHome/pdfReport', $data);
   
-        return $pdf->download('A&S_report.pdf');
+        return $pdf->download('AccountingSells_report.pdf');
     }
 }

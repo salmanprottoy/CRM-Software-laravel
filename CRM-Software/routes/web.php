@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('superAdmin.index');
 // });
 
-//SUPERADMIN
 //superAdmin
 Route::get('/superAdmin_home', 'superAdmin_homeController@index')->name('superAdmin.index');
 Route::get('/superAdmin_home/superAdmin_list', 'superAdmin_homeController@superAdmin_show')->name('superAdmin.superAdmin');
@@ -70,4 +69,4 @@ Route::get('/accountingSellsHome/BankInfo/search', 'accountingSellsController@se
 Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
 Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
 //pdf
-Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF');
+Route::get('/accountingSellsHome/Report/generate-pdf','accountingSellsController@generatePDF')->name('accountingSellsHome.getPdf');
