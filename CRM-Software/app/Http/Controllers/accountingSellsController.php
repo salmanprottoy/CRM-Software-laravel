@@ -189,6 +189,21 @@ class accountingSellsController extends Controller
         /* $bankInfo = bank::all();
         return view('accountingSellsHome.bankInfo')->with('bankInfo', $bankInfo); */
     }
+    public function searchBankInfo(Request $req)
+    {
+        if ($req->ajax()) 
+        {
+            
+            $search = $req->get('search');
+            $searchBy = $req->get('searchBy');
+            $bankInfo = bank::where($req->searchBy, 'like', '%'.$req->search.'%')->get();
+            error_log($bankInfo);
+            return response()->json($bankInfo);
+        } 
+        else {
+            return Redirect()->Back();
+        }
+    }
     public function editBankInfo($id)
     {
         $bankInfo = bank::find($id);

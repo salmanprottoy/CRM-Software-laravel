@@ -15,35 +15,30 @@
 		</select>
         <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="Search Bank Info" aria-label="Search Bank Info">
 	</div>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		
 		$(document).ready(function(){
 		$('#search').on('keyup',function(){
 			var search = $("#search").val();
 			var searchBy = $("#searchBy").val();
-
 			$.ajax({
-				url: '/accountingSellsHome/bankInfo/search',
-				method: 'post',
+				url: "{{ route('accountingSellsHome.bankInfo.search') }}",
+				method: 'get',
 				datatype : 'json',
 				data : {'search':search,
 						'searchBy':searchBy},
 				success:function(response){
-					if(response.bankInfo !== 'error'){
 						var tableBody="<tr><td>#</td><td>Account Name</td><td>Account Number</td><td>Bank Name</td><td>Action</td></tr>";
-						response.bankInfo.forEach(element => {
+						response.forEach(element => {
 							var tableRow="";
 							tableRow+="<td>"+element.id+"</td>";
 							tableRow+="<td>"+element.accountName+"</td>";
 							tableRow+="<td>"+element.accountNumber+"</td>";
 							tableRow+="<td>"+element.bankName+"</td>";
-							tableRow+="<td><a href='../accountingSellsHome/bankInfo/edit/"+element.id+"'>Edit</a></td>";
+							tableRow+="<td><a href='../accountingSellsHome/BankInfo/edit/"+element.id+"'>Edit</a></td>";
 							tableBody=tableBody+"<tr>"+tableRow+"</tr>";
 						});
 						$('#table').html(tableBody);
-					}else{
-                            condole.log("Error!");
-					}
 				},
 				error:function(response){
 					alert('server error');
@@ -51,7 +46,7 @@
 			});
         });
     });
-    </script> -->
+    </script>
     <div class="card-box mb-30">
 		<div class="pb-20">
         <table class="table hover multiple-select-row data-table-export nowrap" id="table">

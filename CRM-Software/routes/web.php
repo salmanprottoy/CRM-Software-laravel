@@ -64,6 +64,7 @@ Route::get('/accountingSellsHome/Product/delete/{id}', 'accountingSellsControlle
 Route::post('/accountingSellsHome/Product/delete/{id}', 'accountingSellsController@deletingProduct')->name('accountingSellsHome.product.update');
 //bankInfo
 Route::get('/accountingSellsHome/BankInfo', 'accountingSellsController@showBankInfo')->name('accountingSellsHome.bankInfo');
+Route::get('/accountingSellsHome/BankInfo/search', 'accountingSellsController@searchBankInfo')->name('accountingSellsHome.bankInfo.search');
 Route::get('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@editBankInfo')->name('accountingSellsHome.bankInfo.edit');
 Route::post('/accountingSellsHome/BankInfo/edit/{id}', 'accountingSellsController@updateBankInfo')->name('accountingSellsHome.bankInfo.update');
 //pdf
