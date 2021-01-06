@@ -13,10 +13,11 @@ module.exports = {
 			}
 		});
 	},
-	getById: function (id, callback) {
-		var sql = "select * from admin_pending_log where pid='" + id + "'";
+	getMaxID: function (id, callback) {
+		var sql = "SELECT MAX(id) AS id FROM adminvalidator";
 		db.getResults(sql, function (results) {
 			if (results.length > 0) {
+				console.log(results);
 				callback(results[0]);
 			}
 		});
@@ -37,9 +38,12 @@ module.exports = {
 			callback(status);
 		});
 	},
+
 	update: function (user, callback) {
-		var sql = "update user set username='" + user.username + "' , password='" + user.password + "' , type='" + user.type + "' where id = '" + user.id + "'";
+		var sql = "update supadmin set Name='" + user.Name + "' , Mobile='" + user.Mobile + "', Email='" + user.Email + "', Gender='" + user.Gender + "' , Address='" + user.Address + "' where id = '" + user.id + "'";
+		console.log(sql);
 		db.execute(sql, function (status) {
+			console.log(status);
 			callback(status)
 		});
 

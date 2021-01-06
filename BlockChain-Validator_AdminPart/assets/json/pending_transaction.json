@@ -1,11 +1,1 @@
-{
-    "pid": "0",
-    "name": "Belal",
-    "mobile": "01996545978",
-    "gender": "Male",
-    "email": "belal@gmil.com",
-    "address": "Chottogram",
-    "image": "assets/uploads/030121_06_13_05.png",
-    "vote": 2,
-    "prev_voter_id": "rayhan"
-}
+[{"id":0,"pid":"47","name":"Belal","mobile":"01996545978","gender":"Male","email":"belal@gmil.com","address":"Chottogram","image":"assets/uploads/030121_06_13_05.png","create_time":"2021-01-06 02:50:20","created_by":"rayhan","vote":7,"prev_voter_id":"rayhan"},{"id":1,"pid":"47","name":"AAAA","mobile":"01996545978","gender":"Male","email":"belal@gmil.com","address":"Chottogram","image":"assets/uploads/030121_06_13_05.png","create_time":"2021-01-06 02:51:02","created_by":"rayhan","vote":4,"prev_voter_id":"rayhan"},{"id":2,"pid":"47","name":"Belal","mobile":"01996545978","gender":"Male","email":"belal@gmil.com","address":"Chottogram","image":"assets/uploads/030121_06_13_05.png","create_time":"2021-01-06 03:56:15","created_by":"rayhan","vote":"0","prev_voter_id":""},{"id":3,"pid":"49","name":"Rayhan Mahi","mobile":"01996545978","gender":"Male","email":"rayhanmahi999@gmail.com","address":"Dhaka","image":"assets/uploads/060121_04_55_15.png","create_time":"2021-01-06 04:17:18","created_by":"rayhan","vote":4,"prev_voter_id":"rayhan"},{"id":4,"pid":"50","name":"Rabeya Ety","mobile":"01996545978","gender":"Female","email":"rayhanmahi999@gmail.com","address":"Sylhet","image":"assets/uploads/060121_04_08_17.png","create_time":"2021-01-06 04:18:32","created_by":"rayhan","vote":"0","prev_voter_id":""},{"id":5,"pid":"50","name":"Rabeya Noaman ETY","mobile":"01996545978","gender":"Female","email":"rayhanmahi999@gmail.com","address":"Sylhet","image":"assets/uploads/060121_04_08_17.png","create_time":"2021-01-06 05:21:41","created_by":"rayhan","vote":4,"prev_voter_id":"rayhan"}]

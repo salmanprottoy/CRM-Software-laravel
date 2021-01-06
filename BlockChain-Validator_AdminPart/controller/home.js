@@ -58,9 +58,10 @@ router.get('/userlist', (req, res) => {
 		if (err) throw err
 
 		var arrayOfObjects = JSON.parse(data);
+		var uname = req.cookies['uname'];
 		//console.log(arrayOfObjects[0].vote);
 		//res.cookie('vote', arrayOfObjects.vote);
-		res.render('home/userlist', { userlist: arrayOfObjects });
+		res.render('home/userlist', { userlist: arrayOfObjects, uname });
 	})
 
 });
