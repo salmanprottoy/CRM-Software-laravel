@@ -10,6 +10,9 @@
 
 	<a href="/home">Back</a> |
 	<a href="/logout">logout</a>
+	<p>
+		<%= uname %>
+	</p>
 	<br>
 
 	<table border="1">
@@ -26,37 +29,44 @@
 		</tr>
 
 		<% for(var i=0; i< userlist.length; i++ ){ %>
-			<tr>
-				<td>
-					<%= userlist[i].id %>
-				</td>
-				<td>
-					<%= userlist[i].pid %>
-				</td>
-				<td>
-					<%= userlist[i].name %>
-				</td>
-				<td>
-					<%= userlist[i].mobile %>
-				</td>
-				<td>
-					<%= userlist[i].email %>
-				</td>
-				<td>
-					<%= userlist[i].address %>
-				</td>
-				<td>
-					<%= userlist[i].gender %>
-				</td>
-				<td>
-					<%= userlist[i].image %>
-				</td>
-				<td>
-					<a href="/user/edit/<%=userlist[i].id%>">Edit</a> |
-					<a href="/user/delete/<%=userlist[i].id%>">Delete</a>
-				</td>
-			</tr>
-			<% } %>
+			<% if(userlist[i].prev_voter_id !=uname) {%>
+				<tr>
+					<td>
+						<%= userlist[i].id %>
+					</td>
+					<td>
+						<%= userlist[i].pid %>
+					</td>
+					<td>
+						<%= userlist[i].name %>
+					</td>
+					<td>
+						<%= userlist[i].mobile %>
+					</td>
+					<td>
+						<%= userlist[i].email %>
+					</td>
+					<td>
+						<%= userlist[i].address %>
+					</td>
+					<td>
+						<%= userlist[i].gender %>
+					</td>
+					<td>
+						<%= userlist[i].image %>
+					</td>
+
+					<td>
+
+
+						<a href="/user/edit/<%=userlist[i].id%>">Edit</a> |
+						<a href="/user/delete/<%=userlist[i].id%>">Delete</a>
+
+
+					</td>
+				</tr>
+				<% } %>
+					<% } %>
 	</table>
 </body>
 

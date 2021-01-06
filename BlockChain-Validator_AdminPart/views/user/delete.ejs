@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Delete User</title>
+	<title>Edit User</title>
 </head>
+
 <body>
 	<form method="post">
 		<fieldset>
-			<legend>Delete User</legend>
+			<legend>Edit User</legend>
 			<table>
 				<tr>
-					<td>Username :</td>
-					<td><%=username%></td>
+					<td>name</td>
+					<td><input type="text" name="name" value="<%=name%>"></td>
 				</tr>
 				<tr>
-					<td>Password :</td>
-					<td><%=password%></td>
+					<td>email</td>
+					<td><input type="text" name="email" value="<%=email%>"></td>
 				</tr>
 				<tr>
-					<td>Type :</td>
-					<td><%=type%></td>
+					<td>mobile</td>
+					<td><input type="text" name="mobile" value="<%=mobile%>"></td>
 				</tr>
-				
+				<tr>
+					<td>gender</td>
+					<td><input type="text" name="gender" value="<%=gender%>"></td>
+				</tr>
+				<tr>
+					<td>address</td>
+					<td><input type="text" name="address" value="<%=address%>"></td>
+				</tr>
+				<tr>
+					<td>image</td>
+					<td><input type="text" name="image" value="<%=image%>"></td>
+				</tr>
+				<tr style="display: none;">
+					<td>vote</td>
+					<td><input type="text" name="vote" value="<%=vote%>"></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td><input type="submit" name="submit" value="Reject"></td>
+				</tr>
 			</table>
-			<div>
-				<h3>Are you sure?</h3>
-				<input type="submit" name="submit" value="Confirm">
-			</div>
 		</fieldset>
 	</form>
 </body>
+
 </html>

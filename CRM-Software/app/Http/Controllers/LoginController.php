@@ -41,6 +41,10 @@ class loginController extends Controller
                 $req->session()->put('designation', $user[0]->designation);
                 return redirect()->route('accountingSellsHome.index');
             }
+            else
+            {
+                
+            }
         }
         else
         {
