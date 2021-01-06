@@ -61,7 +61,7 @@ Route::get('/login/callback/linkedin', [AdminloginController::class, 'handleLink
 
 
 //Accounting & Sells 
-Route::group(['middleware' => ['checksession']], function () {
+Route::group(['middleware' => ['checksession', 'accountingTypeCheck']], function () {
 	Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
 	Route::get('/accountingSellsHome/Profile', 'accountingSellsController@showProfile')->name('accountingSellsHome.profile');
 	Route::post('/accountingSellsHome/Profile', 'accountingSellsController@updateProfile');
