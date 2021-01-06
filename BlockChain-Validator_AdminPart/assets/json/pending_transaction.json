@@ -1,0 +1,11 @@
+{
+    "pid": "0",
+    "name": "Belal",
+    "mobile": "01996545978",
+    "gender": "Male",
+    "email": "belal@gmil.com",
+    "address": "Chottogram",
+    "image": "assets/uploads/030121_06_13_05.png",
+    "vote": 2,
+    "prev_voter_id": "rayhan"
+}

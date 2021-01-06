@@ -57,6 +57,9 @@ Route::get('/login/callback/linkedin', [AdminloginController::class, 'handleLink
 
 
 
+
+
+
 //Accounting & Sells 
 Route::group(['middleware' => ['checksession']], function () {
 	Route::get('/accountingSellsHome', 'accountingSellsController@index')->name('accountingSellsHome.index');
@@ -167,4 +170,3 @@ Route::group(['middleware' => ['checksession']], function () {
 	Route::resource('/marketuser', 'MarketUserController');
 });
  //marketing
-
