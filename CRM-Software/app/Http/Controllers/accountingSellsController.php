@@ -11,6 +11,7 @@ use App\Models\salary;
 use App\Http\Requests\bankInfoRequest;
 use App\Http\Requests\customerRequest;
 use App\Http\Requests\productRequest;
+use App\Http\Requests\infoCheck;
 use GuzzleHttp\Client;
 use PDF;
 
@@ -28,6 +29,32 @@ class accountingSellsController extends Controller
         return view('accountingSellsHome.calendar');
     }
 
+    //profile
+    public function showProfile(Request $req)
+    {
+        $user = [
+            'username'=> $req->session()->get('username'),
+            'phone'=> $req->session()->get('phone'),
+            'email'=> $req->session()->get('email'),
+            'designation'=> $req->session()->get('designation')
+        ];
+        return view('accountingSellsHome.profile', $user);
+    }
+    public function updateProfile(Request $req,infoCheck $info)
+    {
+        $affected = DB::table('user')
+              ->where('id', $req->session()->get('id'))
+              ->update(['username' => $info->username,
+                        'designation'=> $info->designation,
+                        'email'=> $info->email,
+                        'contactNumber'=> $info->phone
+                      ]);
+              $req->session()->put('username',$info->username);
+              $req->session()->put('designation',$info->designation);
+              $req->session()->put('email',$info->email);
+              $req->session()->put('phone',$info->phone);
+        return redirect()->route('accountingSellsHome.profile');
+    }
     //customer
     public function showCustomer()
     {
@@ -277,11 +304,23 @@ class accountingSellsController extends Controller
         return view('accountingSellsHome.report')->with('totalCustomer', $countCustomer)->with('totalProduct', $countProduct)->with('activeCustomer', $countActiveCustomer)->with('maleCustomer', $countMaleCustomer)->with('femaleCustomer', $countFemaleCustomer)->with('totalProductInStock', $totalProductInStock);
     }
     //Pdf
-    public function generatePDF()
+    public function generatePDF1()
     {
         $totalProduct = product::all();
         $countProduct = $totalProduct->count();
         $totalProductInStock = product::get()->sum('quantityInStock');
+
+        $data = [
+                    'title'                 => 'Accounting & Sells Report',
+                    'totalProduct'          => $countProduct,
+                    'totalProductInStock'   => $totalProductInStock
+                ];
+        $pdf = PDF::loadView('accountingSellsHome/productReportPdf', $data);
+  
+        return $pdf->download('AccountingSells_report_Product.pdf');
+    }
+    public function generatePDF2()
+    {
         $totalCustomer = customer::all();
         $countCustomer = $totalCustomer->count();
         $activeCustomer = customer::where('customerStatus', 'active');
@@ -294,14 +333,12 @@ class accountingSellsController extends Controller
         $data = [
                     'title'                 => 'Accounting & Sells Report',
                     'totalCustomer'         => $countCustomer,
-                    'totalProduct'          => $countProduct,
                     'activeCustomer'        => $countActiveCustomer,
                     'maleCustomer'          => $countMaleCustomer,
-                    'femaleCustomer'        => $countFemaleCustomer,
-                    'totalProductInStock'   => $totalProductInStock
+                    'femaleCustomer'        => $countFemaleCustomer
                 ];
-        $pdf = PDF::loadView('accountingSellsHome/pdfReport', $data);
+        $pdf = PDF::loadView('accountingSellsHome/customerReportPdf', $data);
   
-        return $pdf->download('AccountingSells_report.pdf');
+        return $pdf->download('AccountingSells_report_Customer.pdf');
     }
 }

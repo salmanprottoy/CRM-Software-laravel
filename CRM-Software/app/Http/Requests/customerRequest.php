@@ -25,7 +25,12 @@ class customerRequest extends FormRequest
     {
         return [
             //
-            'customerName'  => 'required'
+            'customerName'          => 'required',
+            'customerContactNumber' => 'required|numeric|digits:11',
+            'customerAddress'       => 'required',
+            'customerEmail'         => 'required|email',
+            'customerStatus'        => 'required',
+            'customerGender'        => 'required'
         ];
     }
 }

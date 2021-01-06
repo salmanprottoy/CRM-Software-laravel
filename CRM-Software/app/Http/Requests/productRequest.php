@@ -25,6 +25,13 @@ class productRequest extends FormRequest
     {
         return [
             //
+            'productCode' => 'required',
+            'productName' => 'required',
+            'productVendor'=>'required',
+            'quantityInStock'=> 'required|numeric',
+            'buyPrice' => 'required|numeric',
+            'sellPrice' => 'required|numeric',
+            'productDescription' => 'required'
         ];
     }
 }

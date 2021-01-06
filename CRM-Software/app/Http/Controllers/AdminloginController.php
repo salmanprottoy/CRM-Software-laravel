@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Laravel\Socialite\Facades\Socialite;
 // use Socialite;
-
 use Illuminate\Support\Facades\DB;
 use App\Models\superAdmin;
 
@@ -52,7 +52,6 @@ class AdminloginController extends Controller
             return Redirect()->Back()->with($alert);
         }
     }
-
 
 
     public function _registerOrLoginUser($data, Request $req)

@@ -112,8 +112,12 @@
 																<input class="form-control form-control-lg" type="number" name="phone" value="{{$phone}}" required>
 															</div>
 															<div class="form-group">
+																<label>Status</label>
+																<input class="form-control form-control-lg" type="text" name="status" value="{{$status}}" >
+															</div>
+															<div class="form-group">
 																<label>address</label>
-																<input class="form-control form-control-lg" type="text" name="status" value="{{$address}}" >
+																<input class="form-control form-control-lg" type="text" name="address" value="{{$address}}" >
 															</div>
 															<div class="form-group mb-0">
 																<input type="submit" class="btn btn-primary" value="Update Information">
