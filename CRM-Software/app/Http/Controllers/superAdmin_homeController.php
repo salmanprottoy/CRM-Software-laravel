@@ -88,8 +88,6 @@ class superAdmin_homeController extends Controller
     public function coupon(Request $req)
     {
         $client = new Client();
-        // $temp = $req->get('user_email');
-        // $req->session()->put('checkemail', $temp);
         $response = $client->request('GET', 'http://localhost:3000/home/getNode');
         if ($response->getStatusCode() == 200) {
             $data = json_decode($response->getBody(), true);
