@@ -68,7 +68,7 @@ router.post('/edit/:id', (req, res) => {
 
 		}
 		console.log(arrayOfObjects);
-		fs.writeFile('./assets/json/pending_transaction.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
+		fs.writeFile('./assets/json/pending_transaction.json', JSON.stringify(arrayOfObjects, null, 2), 'utf-8', function (err) {
 			if (err) throw err
 			console.log('Done!')
 		})
@@ -201,7 +201,7 @@ router.post('/delete/:id', (req, res) => {
 
 		}
 		console.log(arrayOfObjects);
-		fs.writeFile('./assets/json/pending_transaction.json', JSON.stringify(arrayOfObjects), 'utf-8', function (err) {
+		fs.writeFile('./assets/json/pending_transaction.json', JSON.stringify(arrayOfObjects, null, 2), 'utf-8', function (err) {
 			if (err) throw err
 			console.log('Done!')
 		})
