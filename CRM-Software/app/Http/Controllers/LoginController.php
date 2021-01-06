@@ -35,11 +35,16 @@ class loginController extends Controller
             else if($user[0]->type=='accountingSells')
             {
                 $req->session()->put('username', $req->username);
+                $req->session()->put('type', $user[0]->type);
                 $req->session()->put('id', $user[0]->id);
                 $req->session()->put('email', $user[0]->email);
                 $req->session()->put('phone', $user[0]->contactNumber);
                 $req->session()->put('designation', $user[0]->designation);
                 return redirect()->route('accountingSellsHome.index');
+            }
+            else
+            {
+                
             }
         }
         else
