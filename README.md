@@ -1,4 +1,4 @@
-# CRM-Software-laravel
+# CRM Software Laravel
 CRM(Customer Relation Management System) project using Laravel framework and Nodejs
 
 ## Getting Started
