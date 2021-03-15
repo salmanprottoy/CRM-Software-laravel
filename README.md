@@ -1,7 +1,7 @@
 # CRM-Software-laravel
 CRM(Customer Relation Management System) project using Laravel framework and Nodejs
 
-# Getting Started
+## Getting Started
     #Clone the Repo first
     
     #install composer then
@@ -21,3 +21,4 @@ CRM(Customer Relation Management System) project using Laravel framework and Nod
     #And finally run
     
     > php artisan serve
+##
