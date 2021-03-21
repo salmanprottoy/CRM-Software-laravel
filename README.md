@@ -1,24 +1,27 @@
 # CRM Software Laravel
+
 CRM(Customer Relation Management System) project using Laravel framework and Nodejs
 
+---
+
 ## Getting Started
-    #Clone the Repo first
+- #### Clone the Repo first
     
-    #install composer then
+- #### Install composer then
     
     > composer install/update
     
-    #copy .env.example file to .env file
+- #### Copy .env.example file to .env file
     
-    > copy .env.example .env
+    > Copy .env.example .env
     
-    #then generate key
+- #### Then generate key
     
     > php artisan key:generate
     
-    #open .env file and change the DATABSE name and password
+- #### Open .env file and change the DATABASE name and password
     
-    #And finally run
+- #### And finally run
     
     > php artisan serve
 ##
