@@ -1,6 +1,6 @@
 # CRM Software Laravel
 
-CRM(Customer Relation Management System) project using Laravel framework and Nodejs
+CRM(Customer Relation Management System) is a SaaS (software as a service) application that manages customer relationship for small business organizations built using two different technologies, Node.JS and Laravel
 
 ---
 
