@@ -1,10 +1,11 @@
 # CRM Software Laravel
 
-CRM(Customer Relation Management System) is a SaaS (software as a service) application that manages customer relationship for small business organizations built using two different technologies, Node.JS and Laravel
+CRM(Customer Relation Management System) is a SaaS (software as a service) application that manages customer relationship for small business organizations built using two different technologies, Node.JS and Laravel.
 
 ---
 
 ## Getting Started
+
 - #### Clone the Repo first
     
 - #### Install composer then
@@ -24,4 +25,5 @@ CRM(Customer Relation Management System) is a SaaS (software as a service) appli
 - #### And finally run
     
     > php artisan serve
+
 ##
