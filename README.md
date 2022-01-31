@@ -21,7 +21,13 @@ CRM(Customer Relation Management System) is a SaaS (software as a service) appli
     
 - #### Install composer then
     
-    > composer install/update
+    ```bash
+    composer install
+    ```
+    or
+    ```bash
+    composer update
+    ```
     
 - #### Copy .env.example file to .env file
     
@@ -29,12 +35,16 @@ CRM(Customer Relation Management System) is a SaaS (software as a service) appli
     
 - #### Then generate key
     
-    > php artisan key:generate
+    ```bash
+    php artisan key:generate
+    ```
     
 - #### Open .env file and change the DATABASE name and password
     
 - #### And finally run
     
-    > php artisan serve
+    ```bash
+    php artisan serve
+    ```
 
 ##
