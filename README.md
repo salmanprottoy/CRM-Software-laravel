@@ -48,3 +48,7 @@ CRM(Customer Relation Management System) is a SaaS (software as a service) appli
     ```
 
 ##
+
+[![Stargazers repo roster for @salmanprottoy/CRM-Software-laravel](https://reporoster.com/stars/salmanprottoy/CRM-Software-laravel)](https://github.com/salmanprottoy/CRM-Software-laravel/stargazers)
+
+[![Forkers repo roster for @salmanprottoy/CRM-Software-laravel](https://reporoster.com/forks/salmanprottoy/CRM-Software-laravel)](https://github.com/salmanprottoy/CRM-Software-laravel/network/members)
